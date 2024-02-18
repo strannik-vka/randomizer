@@ -1,0 +1,51 @@
+:root {
+    --menu-background-color: var(--white-rgb);
+}
+
+.menu {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    z-index: 2000;
+    width: 100%;
+    height: calc(100svh - (var(--section-sticky-height) + (var(--section-sticky-top) * 2)));
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(var(--menu-background-color), 1);
+    border-radius: 1.88rem 1.88rem 0rem 0rem;
+    transform: translate(-50%, 100%);
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    transition: transform 0.4s ease-in-out;
+    @media (min-width: 768px) {
+        max-width: 26.88rem;
+        padding-right: calc(var(--bs-gutter-x) * 0.5);
+        padding-left: calc(var(--bs-gutter-x) * 0.5);
+    }
+    &.show {
+        transform: translate(-50%, 0%);
+    }
+    &-is {
+        &-open {
+            position: static;
+            touch-action: none;
+            overflow: hidden;
+        }
+    }
+    &-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        min-height: 100%;
+        padding: 1rem 1.875rem;
+    }
+    &-close {
+        position: sticky;
+        bottom: 0;
+        width: 100%;
+        height: auto;
+    }
+}

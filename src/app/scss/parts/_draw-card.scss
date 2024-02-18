@@ -1,0 +1,87 @@
+:root {
+    --draw-card-padding-y: 1.25rem;
+    --draw-card-padding-x: 1.25rem;
+    --draw-card-border-radius: 1.56rem;
+    --draw-card-background-color: var(--dark-white-rgb);
+    --draw-card-wrapper-gap: 1rem;
+    --draw-card-content-gap: 0.313rem;
+    --draw-card-color: var(--blue-rgb);
+}
+
+.draw-card {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: var(--draw-card-padding-y) var(--draw-card-padding-x);
+    color: rgba(var(--draw-card-color), 1);
+    background-color: rgba(var(--draw-card-background-color), 1);
+    border-radius: var(--draw-card-border-radius);
+    cursor: pointer;
+    draw-select: none;
+    &-wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        row-gap: var(--draw-card-wrapper-gap);
+        column-gap: var(--draw-card-wrapper-gap);
+        overflow: hidden;
+    }
+    &-avatar {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        width: 5.31rem;
+        height: 5.31rem;
+        flex: 0 1 auto;
+        border-radius: 1.25rem;
+        overflow: hidden;
+        & > * {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    &-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        flex: 1;
+        row-gap: var(--draw-card-content-gap);
+        column-gap: var(--draw-card-content-gap);
+        max-width: 100%;
+        overflow: hidden;
+    }
+    &-name {
+        display: block;
+        max-width: 100%;
+        font-weight: 600;
+        font-size: 1.38rem;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    &-link {
+        display: flex;
+        align-items: center;
+        row-gap: var(--draw-card-content-gap);
+        column-gap: var(--draw-card-content-gap);
+        font-size: 1rem;
+        line-height: 120%;
+        color: rgba(var(--draw-card-color), 0.5);
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        & > * {
+            &:last-of-type {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+}

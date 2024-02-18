@@ -1,0 +1,5 @@
+@each $color, $value in $colors {
+    .text-#{$value} {
+        color: rgba(var(--#{$value}-rgb), 1) !important;
+    }
+}

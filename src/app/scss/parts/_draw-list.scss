@@ -1,0 +1,10 @@
+:root {
+    --user-list-gap: 1rem;
+}
+
+.draw-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--user-list-gap);
+    column-gap: var(--user-list-gap);
+}

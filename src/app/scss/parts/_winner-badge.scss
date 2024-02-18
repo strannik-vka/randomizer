@@ -1,0 +1,69 @@
+:root {
+    --winner-badge-border-radius: 1.56rem;
+    --winner-badge-padding-x: 1.375rem;
+    --winner-badge-padding-y: 0.938rem;
+    --winner-badge-gap: 0.625rem;
+    --winner-badge-background-color: var(--white-rgb);
+    --winner-badge-avatar-size: 5.31rem;
+    --winner-badge-text-color: 134, 150, 187;
+    --winner-badge-font-weight: 500;
+    --winner-badge-font-size: 1.13rem;
+    --winner-badge-line-height: 1.38rem;
+    --winner-badge-backdrop-filter: unset;
+    --winner-badge-box-shadow: unset;
+}
+
+.winner-badge {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    row-gap: var(--winner-badge-gap);
+    column-gap: var(--winner-badge-gap);
+    padding: var(--winner-badge-padding-y) var(--winner-badge-padding-x);
+    background-color: rgba(var(--winner-badge-background-color), 1);
+    border-radius: var(--winner-badge-border-radius);
+    backdrop-filter: var(--winner-badge-backdrop-filter);
+    box-shadow: var(--winner-badge-box-shadow);
+    font-weight: var(--winner-badge-font-weight);
+    font-size: var(--winner-badge-font-size);
+    line-height: var(--winner-badge-line-height);
+    text-align: left;
+    overflow: hidden;
+    &-avatar {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        width: var(--winner-badge-avatar-size);
+        height: var(--winner-badge-avatar-size);
+        border-radius: 1.25rem;
+        & > * {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    &-name {
+        font-size: 1.88rem;
+        font-weight: 600;
+        line-height: 2.31rem;
+        color: rgba(var(--winner-badge-text-color), 1);
+    }
+    &-description {
+        color: rgba(var(--winner-badge-text-color), 0.5);
+    }
+    &-glass {
+        background-color: rgba(var(--winner-badge-background-color), 0.2);
+        --winner-badge-text-color: var(--winner-badge-background-color);
+        --winner-badge-backdrop-filter: blur(0.25rem);
+        --winner-badge-box-shadow: 0 0 0 0.13rem rgba(var(--winner-badge-background-color), 0.25);
+        & .winner-badge-name {
+            color: rgba(var(--winner-badge-text-color), 1);
+        }
+        & .winner-badge-description {
+            color: rgba(var(--winner-badge-text-color), 0.8);
+        }
+    }
+}

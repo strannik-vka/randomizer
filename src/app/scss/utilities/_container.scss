@@ -1,0 +1,21 @@
+.container {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    max-width: 100%;
+    width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * 0.5);
+    padding-left: calc(var(--bs-gutter-x) * 0.5);
+    margin-right: auto;
+    margin-left: auto;
+    @media (min-width: 768px) {
+        max-width: calc(26.88rem + var(--bs-gutter-x));
+    }
+}
+
+.container-full {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: calc(85svh - (var(--header-height) + var(--footer-height)) - var(--bs-gutter-x));
+}

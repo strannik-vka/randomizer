@@ -1,0 +1,79 @@
+:root {
+    --tooltip-zindex: 1040;
+    --tooltip-padding: 0.63rem;
+    --tooltip-max-width: 13.25rem;
+    --tooltip-background-color: var(--black-rgb);
+    --tooltip-color: var(--white-rgb);
+    --tooltip-font-size: 0.88rem;
+    --tooltip-font-weight: 500;
+    --tooltip-line-height: 100%;
+    --tooltip-border-radius: 0.19rem;
+    --tooltip-box-shadow: 0rem 0.13rem 0.25rem 0rem rgba(var(--black-rgb), 0.15);
+}
+
+.tooltip {
+    position: fixed;
+    z-index: var(--tooltip-zindex);
+    display: none;
+    width: auto;
+    height: fit-content;
+    &[data-tooltip-pos="top center"] {
+        transform: translateX(-50%);
+    }
+    &[data-tooltip-pos="bottom center"] {
+        transform: translateX(-50%);
+    }
+    &-wrapper {
+        position: relative;
+        width: 100%;
+        min-width: var(--tooltip-max-width);
+        height: fit-content;
+        padding: var(--tooltip-padding);
+        background-color: rgba(var(--tooltip-background-color), 0.8);
+        font-size: var(--tooltip-font-size);
+        font-weight: var(--tooltip-font-weight);
+        line-height: var(--tooltip-line-height);
+        color: rgba(var(--tooltip-color), 1);
+        text-align: center;
+        border-radius: var(--tooltip-border-radius);
+        box-shadow: var(--tooltip-box-shadow);
+    }
+    &.show {
+        display: block;
+    }
+    &-icon {
+        cursor: pointer;
+    }
+    &[data-tooltip-pos="top center"] {
+        & .tooltip-wrapper {
+            &::before {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                z-index: 11;
+                height: 0.38rem;
+                width: 0.81rem;
+                border: 0.81rem solid transparent;
+                border-top-color: rgba(var(--tooltip-background-color), 0.8);
+                transform: translate(-50%, 100%);
+            }
+        }
+    }
+    &[data-tooltip-pos="bottom center"] {
+        & .tooltip-wrapper {
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 50%;
+                z-index: 11;
+                height: 0.38rem;
+                width: 0.81rem;
+                border: 0.81rem solid transparent;
+                border-bottom-color: rgba(var(--tooltip-background-color), 0.8);
+                transform: translate(-50%, -100%);
+            }
+        }
+    }
+}

@@ -1,0 +1,11 @@
+:root {
+    --section-sticky-top: 1.875rem;
+    --section-sticky-height: 3.757rem;
+}
+
+.section-sticky {
+    position: sticky;
+    top: var(--section-sticky-top);
+    z-index: 10;
+    height: var(--section-sticky-height);
+}

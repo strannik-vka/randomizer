@@ -1,0 +1,95 @@
+:root {
+    --user-badge-padding-y: 1.125rem;
+    --user-badge-padding-x: 1.125rem;
+    --user-badge-border-radius: 1.56rem;
+    --user-badge-background-color: var(--dark-white-rgb);
+    --user-badge-wrapper-gap: 1rem;
+    --user-badge-content-gap: 0.313rem;
+    --user-badge-color: var(--blue-rgb);
+}
+
+.user-badge {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: var(--user-badge-padding-y) var(--user-badge-padding-x);
+    color: rgba(var(--user-badge-color), 1);
+    background-color: rgba(var(--user-badge-background-color), 1);
+    border-radius: var(--user-badge-border-radius);
+    cursor: pointer;
+    user-select: none;
+    &-wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        row-gap: var(--user-badge-wrapper-gap);
+        column-gap: var(--user-badge-wrapper-gap);
+    }
+    &-avatar {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        width: 5.31rem;
+        height: 5.31rem;
+        flex: 0 1 auto;
+        border-radius: 1.25rem;
+        overflow: hidden;
+        & > * {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    &-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        flex: 1;
+        row-gap: var(--user-badge-content-gap);
+        column-gap: var(--user-badge-content-gap);
+    }
+    &-name {
+        font-weight: 600;
+        font-size: 1.38rem;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    &-description {
+        font-size: 1rem;
+        color: rgba(var(--user-badge-color), 0.5);
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    &-actions {
+        & > * {
+            --bs-btn-size: 2rem;
+            color: rgba(var(--user-badge-color), 0.8);
+        }
+    }
+    &-profile {
+        --user-badge-padding-y: 0;
+        --user-badge-padding-x: 0;
+        --user-badge-border-radius: unset;
+        --user-badge-wrapper-gap: 1rem;
+        --user-badge-content-gap: 0.313rem;
+        --user-badge-color: var(--white-rgb);
+        background-color: unset;
+        cursor: default;
+        & .user-badge-description {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            row-gap: var(--user-badge-wrapper-gap);
+            column-gap: var(--user-badge-wrapper-gap);
+        }
+    }
+}

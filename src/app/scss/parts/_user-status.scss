@@ -1,0 +1,38 @@
+:root {
+    --user-status-padding-y: 0.31rem;
+    --user-status-padding-x: 0.63rem;
+    --user-status-background-color: var(--primary-rgb);
+    --user-status-color: var(--white-rgb);
+    --user-status-border-radius: 0.63rem;
+    --user-status-font-size: 0.875rem;
+    --user-status-font-weight: 500;
+    --user-status-line-height: 100%;
+}
+
+.user-status {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: var(--user-status-padding-y) var(--user-status-padding-x);
+    background-color: rgba(var(--user-status-background-color), 1);
+    font-size: var(--user-status-font-size);
+    font-weight: var(--user-status-font-weight);
+    line-height: var(--user-status-line-height);
+    color: rgba(var(--user-status-color), 1);
+    border-radius: var(--user-status-border-radius);
+    overflow: hidden;
+    &-wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: nowrap;
+        row-gap: 0.625rem;
+        column-gap: 0.625rem;
+    }
+    &-light {
+        --user-status-background-color: var(--white-rgb);
+        --user-status-color: var(--blue-rgb);
+    }
+}

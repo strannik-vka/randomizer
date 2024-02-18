@@ -1,0 +1,63 @@
+// parts
+@import "../parts/card-link";
+@import "../parts/draw-card";
+@import "../parts/draw-list";
+@import "../parts/profile-fields";
+@import "../parts/sticky-block";
+@import "../parts/user-badge";
+@import "../parts/user-card";
+@import "../parts/user-list";
+@import "../parts/user-status";
+@import "../parts/winner-card";
+@import "../parts/winner-badge";
+
+.section-main {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100%;
+    flex: 1;
+    & > * {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        width: 100%;
+        height: 100%;
+    }
+    &-inner {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1.875rem;
+        column-gap: 1.875rem;
+        flex: 1;
+    }
+    &-primary {
+        // flex-basis: calc(100svh - 9rem);
+        flex: 1;
+    }
+    &-content {
+        position: relative;
+        z-index: 1;
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 1.875rem;
+        border-radius: 1.88rem 1.88rem 0rem 0rem;
+        background-color: var(--white);
+    }
+    &-list {
+        display: flex;
+        flex-direction: column;
+        row-gap: 0.625rem;
+        column-gap: 0.625rem;
+    }
+    &-text {
+        font-size: 1.38rem;
+        font-weight: 600;
+        line-height: 1.69rem;
+        letter-spacing: 0%;
+        text-align: center;
+    }
+}

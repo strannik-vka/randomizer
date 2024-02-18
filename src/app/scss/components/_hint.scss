@@ -1,0 +1,29 @@
+:root {
+    --hint-padding-x: 1.88rem;
+    --hint-padding-y: 0.94rem;
+    --hint-border-radius: 0.94rem;
+    --hint-background-color: var(--black-rgb);
+    --hint-color: var(--white-rgb);
+}
+
+.hint {
+    position: fixed;
+    bottom: 5rem;
+    left: 50%;
+    z-index: 2000;
+    padding: var(--hint-padding-y) var(--hint-padding-x);
+    background-color: rgba(var(--hint-background-color), 0.8);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    color: rgba(var(--hint-color), 1);
+    border-radius: var(--hint-border-radius);
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, 0);
+    transition: 0.6s ease-in-out;
+    &.show {
+        opacity: 1;
+        visibility: visible;
+    }
+}
