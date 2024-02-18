@@ -3,11 +3,12 @@ import SponsorCard from "./SponsorCard"
 
 const SponsorList = (props) => {
     return (
-        props.list.map(item => {
+        props.list.map((item, i) =>
             <SponsorCard
+                key={i}
                 {...item}
             />
-        })
+        )
     )
 }
 
