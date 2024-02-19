@@ -17,6 +17,7 @@ const IndexPage = (props) => {
     const [participantsCount, setParticipantsCount] = useState(0);
     const [checking, setChecking] = useState(false);
     const [participantsListShow, setParticipantsListShow] = useState(false);
+    const [isOnJoin, setIsOnJoin] = useState(false);
 
     const getGiveawayStats = useCallback(() => {
         BackendAPI.get('getGiveawayStats', {
@@ -33,7 +34,7 @@ const IndexPage = (props) => {
     }, [giveaway_id]);
 
     const onJoin = useCallback(() => {
-        setChecking(true);
+        setIsOnJoin(true);
     }, []);
 
     const onParticipantsListShow = useCallback(() => {
@@ -43,6 +44,12 @@ const IndexPage = (props) => {
     const onParticipantsListHide = useCallback(() => {
         setParticipantsListShow(false);
     }, [])
+
+    useEffect(() => {
+        if (isOnJoin) {
+            setChecking(true);
+        }
+    }, [isOnJoin])
 
     useEffect(() => {
         if (checking) {
