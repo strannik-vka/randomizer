@@ -8,11 +8,11 @@ const JoinButton = (props) => {
         if (joining) {
             BackendAPI.get('join', {
                 giveaway_id: props.giveaway_id
-            }).then(() => {
+            }).then((response) => {
                 setJoining(false);
 
                 if (typeof props.onJoin === 'function') {
-                    props.onJoin();
+                    props.onJoin(response.data);
                 }
             }).catch(() => {
                 setJoining(false);
@@ -26,7 +26,13 @@ const JoinButton = (props) => {
             className="btn btn-lg btn-primary btn-gradient w-100"
             disabled={props.checking}
         >
-            {joining ? 'Подождите..' : 'Принять участие'}
+            {joining ? (
+                <div className="spinner-border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            ) : (
+                'Принять участие'
+            )}
         </button>
     )
 }

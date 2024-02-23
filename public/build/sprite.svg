@@ -8,9 +8,9 @@
 
     <!-- Иконка кебаб-меню -->
     <symbol id="kebab" viewBox="0 0 6 28">
-        <circle cx="3.000000" cy="3.000000" r="3.000000" fill="currentColor" fill-opacity="1.000000"/>
-        <circle cx="3.000000" cy="14.000000" r="3.000000" fill="currentColor" fill-opacity="1.000000"/>
-        <circle cx="3.000000" cy="25.000000" r="3.000000" fill="currentColor" fill-opacity="1.000000"/>
+        <circle cx="3.000000" cy="3.000000" r="3.000000" fill="currentColor" fillOpacity="1.000000"/>
+        <circle cx="3.000000" cy="14.000000" r="3.000000" fill="currentColor" fillOpacity="1.000000"/>
+        <circle cx="3.000000" cy="25.000000" r="3.000000" fill="currentColor" fillOpacity="1.000000"/>
     </symbol>
 
     <!-- Иконка кебаб-меню -->

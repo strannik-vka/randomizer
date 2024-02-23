@@ -1,19 +1,21 @@
 import React from "react"
 import { BaseURL } from "../../../shared/api/BackendAPI";
+import declOfNum from "../../../shared/lib/declOdNum";
 
 const ParticipantsHeader = (props) => {
-    const list = Array.isArray(props.list) ? props.list.slice(0, 3) : [];
+    const list = Array.isArray(props.list) ? props.list : [];
+    const listLimit = list.slice(0, 3);
 
     return (
         <header className="section section-content section-sticky">
             <div className="container">
                 <div className="section-sticky-inner">
-                    {list.length > 0 ? <>
+                    {list.length > 0 ? (
                         <div onClick={props.onShow} className="sticky-block">
                             <div className="sticky-block-wrapper">
                                 <div className="sticky-block-group">
                                     {
-                                        list.map(item => (
+                                        listLimit.map(item => (
                                             <div key={item.id} className="sticky-block-icon">
                                                 <img src={BaseURL + 'getAvatar?id=' + item.id} />
                                             </div>
@@ -21,7 +23,7 @@ const ParticipantsHeader = (props) => {
                                     }
                                 </div>
                                 <div className="sticky-block-text">
-                                    {props.count} участника
+                                    {props.count.toLocaleString()} {declOfNum(props.count, ['участник', 'участника', 'участников'])}
                                 </div>
                                 <div className="sticky-block-arrow">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -33,7 +35,7 @@ const ParticipantsHeader = (props) => {
                                 </div>
                             </div>
                         </div>
-                    </> : <>
+                    ) : (
                         <div className="sticky-block pointer-events-none">
                             <div className="sticky-block-wrapper">
                                 <div className="sticky-block-icon sticky-block-icon-text">
@@ -44,7 +46,7 @@ const ParticipantsHeader = (props) => {
                                 </div>
                             </div>
                         </div>
-                    </>}
+                    )}
                 </div>
             </div>
         </header>

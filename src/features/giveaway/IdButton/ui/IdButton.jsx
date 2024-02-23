@@ -9,7 +9,7 @@ const IdButton = (props) => {
                 readOnly={true}
                 value={props.id}
                 type="text"
-                className="form-control text-center disabled"
+                className={'form-control disabled ' + (props.textAlign || 'text-center')}
             />
             <button onClick={() => {
                 copyToClipboard(props.id);

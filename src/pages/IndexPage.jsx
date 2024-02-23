@@ -1,17 +1,13 @@
-import Preloader from "../shared/ui/Preloader"
 import ParticipantsHeader from "../widgets/participant/ui/ParticipantsHeader"
-import Lottie from "lottie-react";
-import girlAnimation from '../app/json/animation/invalid.json'
-import welcomeAnimation from '../app/json/animation/welcome.json'
-import successAnimation from '../app/json/animation/success.json'
-import checkAnimation from '../app/json/animation/check.json'
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { BackendAPI } from "../shared/api/BackendAPI";
 import URLParam from "../shared/lib/URLParam";
 import Bottom from "../widgets/bottom/ui/Bottom";
 import Menu from "../widgets/menu/ui/Menu";
 import ParticipantsList from "../widgets/participant/ui/ParticipantsList";
-import Hint from "../shared/ui/Hint";
+import AnimationText from "../widgets/AnimationText/ui/AnimationText";
+import GiveawaysCount from "../widgets/giveaway/ui/GiveawaysCount";
+import PageLayout from "../widgets/PageLayout/ui/PageLayout";
 
 const IndexPage = (props) => {
     const giveaway_id = URLParam('giveaway_id');
@@ -21,14 +17,8 @@ const IndexPage = (props) => {
     const [participantsCount, setParticipantsCount] = useState(0);
     const [checking, setChecking] = useState(false);
     const [participantsListShow, setParticipantsListShow] = useState(false);
-    const [isOnJoin, setIsOnJoin] = useState(false);
-    const [participantId, setParticipantId] = useState(false);
-
-    const getParticipantId = () => {
-        BackendAPI.get('getID').then(response => {
-            setParticipantId(response.data?.id);
-        })
-    }
+    const [onJoined, setOnJoin] = useState(false);
+    const [giveawayStatus, setGiveawayStatus] = useState(false);
 
     const getGiveawayStats = useCallback(() => {
         BackendAPI.get('getGiveawayStats', {
@@ -38,6 +28,7 @@ const IndexPage = (props) => {
             setParticipants(response.data?.participants);
             setParticipantsCount(response.data?.participants_count);
             setSponsor(response.data?.owner);
+            setGiveawayStatus(response.data?.status);
 
             setChecking(false);
         }).catch(() => {
@@ -45,8 +36,14 @@ const IndexPage = (props) => {
         })
     }, [giveaway_id]);
 
-    const onJoin = useCallback(() => {
-        setIsOnJoin(true);
+    const onJoin = useCallback((data) => {
+        setOnJoin(data.id ? (
+            data.id
+        ) : data.error ? (
+            data.error
+        ) : (
+            false
+        ));
     }, []);
 
     const onParticipantsListShow = useCallback(() => {
@@ -59,110 +56,84 @@ const IndexPage = (props) => {
 
     // useEffects
     useEffect(() => {
-        if (isOnJoin) {
+        if (onJoined) {
             setChecking(true);
         }
-    }, [isOnJoin])
+    }, [onJoined])
 
     useEffect(() => {
         if (checking) {
             getGiveawayStats()
-            getParticipantId()
         }
     }, [checking])
 
     useEffect(() => {
         if (giveaway_id) {
             setChecking(true);
-        } else {
-            alert('нет параметра giveaway_id');
         }
     }, [])
 
-    return (<>
-        <Preloader show={props.preloader} />
+    return (
+        <PageLayout preloader={props.preloader}>
+            <div className="wrapper">
+                {giveaway_id &&
+                    <ParticipantsHeader
+                        count={participantsCount}
+                        list={participants}
+                        onShow={onParticipantsListShow}
+                    />
+                }
 
-        <div className="wrapper">
-            <ParticipantsHeader
-                count={participantsCount}
-                list={participants}
-                onShow={onParticipantsListShow}
-            />
+                <main className="content">
+                    <section className="section section-content section-main">
+                        <div className="container">
+                            <div className="section-main-inner">
+                                <div className="section-main-primary">
+                                    <div className="row g-3">
+                                        <AnimationText
+                                            checking={checking}
+                                            onJoined={onJoined}
+                                            joined={joined}
+                                            sponsor={sponsor}
+                                            giveawayStatus={giveawayStatus}
+                                            giveawayId={giveaway_id}
+                                        />
 
-            <main className="content">
-                <section className="section section-content section-main">
-                    <div className="container">
-                        <div className="section-main-inner">
-                            <div className="section-main-primary">
-                                <div className="row g-3">
-                                    <div className="col-12">
-                                        <div className="block-animation">
-                                            <Lottie
-                                                animationData={
-                                                    checking ? checkAnimation : (
-                                                        isOnJoin ? successAnimation : (
-                                                            joined ? girlAnimation : welcomeAnimation
-                                                        )
-                                                    )
-                                                }
+                                        {(props.user?.giveaways_participated > 0 && giveaway_id) &&
+                                            <GiveawaysCount
+                                                count={props.user.giveaways_participated}
                                             />
-                                        </div>
-                                    </div>
-                                    <div className="col-12">
-                                        <div className="section-main-text text-center text-white">
-                                            {checking ?
-                                                <>
-                                                    Проверяем, выполнены ли<br />
-                                                    все условия розыгрыша...
-                                                </>
-                                                : (isOnJoin ?
-                                                    <>
-                                                        <div className="fs-lg fw-600">Поздравляем!</div>
-                                                        <span className="fw-500">Вы участвуете в розыгрыше</span>
-                                                    </>
-                                                    : (joined ?
-                                                        <>
-                                                            <div className="fs-lg fw-600">Упс!</div>
-                                                            <span className="fw-500">Вы уже участвуете в розыгрыше, <br />от канала <a href="" target="_blank">VK Music Bot</a></span>
-                                                        </>
-                                                        :
-                                                        <>
-                                                            Нажмите на кнопку ниже,<br />
-                                                            чтобы участвовать в розыгрыше
-                                                        </>
-                                                    )
-                                                )
-                                            }
-                                        </div>
+                                        }
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-            </main>
+                    </section>
+                </main>
 
-            <Bottom
-                giveaway_id={giveaway_id}
-                onJoin={onJoin}
-                joined={joined}
-                checking={checking}
-                participantId={participantId}
-                sponsor={sponsor}
-            />
+                {giveaway_id &&
+                    <Bottom
+                        giveaway_id={giveaway_id}
+                        onJoin={onJoin}
+                        joined={joined}
+                        checking={checking}
+                        user={props.user}
+                        sponsor={sponsor}
+                        giveawayStatus={giveawayStatus}
+                    />
+                }
 
-            <Menu
-                show={participantsListShow}
-                onClose={onParticipantsListHide}
-            >
-                <ParticipantsList
-                    list={participants}
-                />
-            </Menu>
-
-            <Hint />
-        </div>
-    </>)
+                <Menu
+                    show={participantsListShow}
+                    onClose={onParticipantsListHide}
+                >
+                    <ParticipantsList
+                        list={participants}
+                    />
+                </Menu>
+            </div>
+        </PageLayout>
+    )
 }
 
-export default IndexPage
+export default React.memo(IndexPage)

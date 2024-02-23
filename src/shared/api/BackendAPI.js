@@ -11,21 +11,16 @@ export const BaseURL = 'https://iselectbot-mock.difhel.dev/api/';
 // })
 
 export const BackendAPI = {
-
-    response: {
-        data: {}
-    },
-
-    get: (method) => {
-        BackendAPI.response = { data: {} };
+    get: (method, options) => {
+        let response = { data: {} };
 
         if (method == 'getGiveawayStats') {
-            BackendAPI.response = {
+            response = {
                 data: {
                     "ok": true,
                     "participants_count": 100,
                     "joined": false,
-                    "status": "start", // или "end" если завершен
+                    "status": "end", // или "end" если завершен
                     "owner": {
                         "channel_id": -100123,
                         "channel_name": "Test channel name",
@@ -57,26 +52,123 @@ export const BackendAPI = {
             }
         }
 
-        if (method == 'getID') {
-            BackendAPI.response = {
+        if (method == 'getMe') {
+            response = {
                 data: {
                     "ok": true,
-                    "id": 1234
+                    "id": 1234,
+                    "name": "Иван",
+                    "giveaways_participated": 10,
+                    "giveaways_won": 3
                 }
             }
         }
 
         if (method == 'join') {
-            BackendAPI.response = {
+            response = {
                 data: {
                     "ok": true,
                     "id": 1234
                 }
             }
+
+            response = {
+                data: {
+                    "ok": false,
+                    "error": "CONDITIONS_ARE_NOT_MET"
+                }
+            }
+
+            // response = {
+            //     data: {
+            //         "ok": false,
+            //         "error": "IP_BLOCKED"
+            //     }
+            // }
+        }
+
+        if (method == 'getMyGiveaways') {
+            if (options.params.active) {
+                response = {
+                    data: {
+                        "ok": true,
+                        "giveaways": [
+                            {
+                                "channel_name": "Хорошие новости",
+                                "channel_id": 1,
+                                "giveaway_id": "aabbcc",
+                                "top_msg_link": "https://t.me/c/123/42"
+                            },
+                            {
+                                "channel_name": "Плохие новости",
+                                "channel_id": 2,
+                                "giveaway_id": "aabbcc",
+                                "top_msg_link": "https://t.me/c/123/42"
+                            }
+                        ]
+                    }
+                }
+            } else {
+                response = {
+                    data: {
+                        "ok": true,
+                        "giveaways": [
+                            {
+                                "channel_name": "Хорошие новости",
+                                "channel_id": 3,
+                                "giveaway_id": "aabbcc",
+                                "top_msg_link": null
+                            },
+                            {
+                                "channel_name": "Хорошие новости",
+                                "channel_id": 4,
+                                "giveaway_id": "aabbcc",
+                                "top_msg_link": "https://t.me/c/123/42"
+                            },
+                            {
+                                "channel_name": "Плохие новости",
+                                "channel_id": 5,
+                                "giveaway_id": "aabbcc",
+                                "top_msg_link": "https://t.me/c/123/42"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+
+        if (method == 'getGiveaways') {
+            response = {
+                data: {
+                    "ok": true,
+                    "giveaways": [
+                        {
+                            "channel_name": "Хорошие новости",
+                            "channel_id": 3,
+                            "giveaway_id": "aabbcc",
+                            "top_msg_link": null
+                        },
+                        {
+                            "channel_name": "Хорошие новости",
+                            "channel_id": 4,
+                            "giveaway_id": "aabbcc",
+                            "top_msg_link": "https://t.me/c/123/42"
+                        },
+                        {
+                            "channel_name": "Плохие новости",
+                            "channel_id": 5,
+                            "giveaway_id": "aabbcc",
+                            "top_msg_link": "https://t.me/c/123/42"
+                        }
+                    ]
+                }
+            }
         }
 
         return new Promise(function (resolve, reject) {
-            resolve(BackendAPI.response)
+            setTimeout(() => {
+                resolve(response)
+            }, 2000)
         });
     }
 }
