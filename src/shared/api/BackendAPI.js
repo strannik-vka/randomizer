@@ -46,6 +46,11 @@ export const BackendAPI = {
                             "name": "Иван Иванов",
                             "id": 1876789,
                             "is_winner": false
+                        },
+                        {
+                            "name": "Иван Иванов",
+                            "id": 213,
+                            "is_winner": false
                         }
                     ]
                 }

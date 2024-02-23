@@ -8,10 +8,10 @@ const ParticipantsHeader = (props) => {
         <header className="section section-content section-sticky">
             <div className="container">
                 <div className="section-sticky-inner">
-                    <div className="sticky-block pointer-events-none">
-                        <div className="sticky-block-wrapper">
-                            {list.length > 0 ? <>
-                                <div onClick={props.onShow} className="sticky-block-group">
+                    {list.length > 0 ? <>
+                        <div onClick={props.onShow} className="sticky-block">
+                            <div className="sticky-block-wrapper">
+                                <div className="sticky-block-group">
                                     {
                                         list.map(item => (
                                             <div key={item.id} className="sticky-block-icon">
@@ -20,10 +20,10 @@ const ParticipantsHeader = (props) => {
                                         ))
                                     }
                                 </div>
-                                <div onClick={props.onShow} className="sticky-block-text">
+                                <div className="sticky-block-text">
                                     {props.count} участника
                                 </div>
-                                <div onClick={props.onShow} className="sticky-block-arrow">
+                                <div className="sticky-block-arrow">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path fillRule="evenodd" clipRule="evenodd"
@@ -31,16 +31,20 @@ const ParticipantsHeader = (props) => {
                                             fill="currentColor" />
                                     </svg>
                                 </div>
-                            </> : <>
+                            </div>
+                        </div>
+                    </> : <>
+                        <div className="sticky-block pointer-events-none">
+                            <div className="sticky-block-wrapper">
                                 <div className="sticky-block-icon sticky-block-icon-text">
                                     🎊
                                 </div>
                                 <div className="sticky-block-text">
                                     Будьте первым участником!
                                 </div>
-                            </>}
+                            </div>
                         </div>
-                    </div>
+                    </>}
                 </div>
             </div>
         </header>
