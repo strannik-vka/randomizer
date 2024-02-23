@@ -15,6 +15,7 @@ import Hint from "../shared/ui/Hint";
 
 const IndexPage = (props) => {
     const giveaway_id = URLParam('giveaway_id');
+    const [sponsor, setSponsor] = useState(null);
     const [joined, setJoined] = useState(false);
     const [participants, setParticipants] = useState(null);
     const [participantsCount, setParticipantsCount] = useState(0);
@@ -36,6 +37,7 @@ const IndexPage = (props) => {
             setJoined(response.data?.joined);
             setParticipants(response.data?.participants);
             setParticipantsCount(response.data?.participants_count);
+            setSponsor(response.data?.owner);
 
             setChecking(false);
         }).catch(() => {
@@ -146,6 +148,7 @@ const IndexPage = (props) => {
                 joined={joined}
                 checking={checking}
                 participantId={participantId}
+                sponsor={sponsor}
             />
 
             <Menu

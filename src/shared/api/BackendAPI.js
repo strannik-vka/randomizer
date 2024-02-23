@@ -24,8 +24,13 @@ export const BackendAPI = {
                 data: {
                     "ok": true,
                     "participants_count": 100,
-                    "joined": true,
+                    "joined": false,
                     "status": "start", // или "end" если завершен
+                    "owner": {
+                        "channel_id": -100123,
+                        "channel_name": "Test channel name",
+                        "channel_link": "https://t.me/test" // или null, если канал приватный
+                    },
                     "participants": [
                         {
                             "name": "Иван Иванов",

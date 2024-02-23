@@ -10,7 +10,7 @@ const Menu = (props) => {
     }, [props.show])
 
     return (
-        <div className={'menu ' + (props.show && 'show')}>
+        <div className={'menu ' + (props.show ? 'show' : '')}>
             <div className="menu-wrapper">
                 {props.children}
             </div>
