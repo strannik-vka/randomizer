@@ -2,7 +2,7 @@ import React from "react"
 import { BaseURL } from "../../../shared/api/BackendAPI";
 
 const ParticipantsHeader = (props) => {
-    const list = Array.isArray(props.list) ? props.list : [];
+    const list = Array.isArray(props.list) ? props.list.slice(0, 3) : [];
 
     return (
         <header className="section section-content section-sticky">
@@ -11,22 +11,22 @@ const ParticipantsHeader = (props) => {
                     <div className="sticky-block pointer-events-none">
                         <div className="sticky-block-wrapper">
                             {list.length > 0 ? <>
-                                <div onClick={props.onShow} class="sticky-block-group">
+                                <div onClick={props.onShow} className="sticky-block-group">
                                     {
                                         list.map(item => (
-                                            <div class="sticky-block-icon">
+                                            <div key={item.id} className="sticky-block-icon">
                                                 <img src={BaseURL + 'getAvatar?id=' + item.id} />
                                             </div>
                                         ))
                                     }
                                 </div>
-                                <div onClick={props.onShow} class="sticky-block-text">
+                                <div onClick={props.onShow} className="sticky-block-text">
                                     {props.count} участника
                                 </div>
-                                <div onClick={props.onShow} class="sticky-block-arrow">
+                                <div onClick={props.onShow} className="sticky-block-arrow">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                        <path fillRule="evenodd" clipRule="evenodd"
                                             d="M6.741 17.3732L5.32678 15.959L11.4947 9.79106L5.32678 3.62317L6.741 2.20896L14.3231 9.79106L6.741 17.3732Z"
                                             fill="currentColor" />
                                     </svg>

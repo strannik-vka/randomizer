@@ -24,7 +24,7 @@ const JoinButton = (props) => {
         <button
             onClick={joining ? () => { } : () => setJoining(true)}
             className="btn btn-lg btn-primary btn-gradient w-100"
-            disabled={props.joined}
+            disabled={props.checking}
         >
             {joining ? 'Подождите..' : 'Принять участие'}
         </button>

@@ -8,7 +8,7 @@ const ParticipantsList = (props) => {
         <div className="user-list">
             {
                 list.map(item => (
-                    <div className="user-card">
+                    <div key={item.id} className="user-card">
                         <div className="user-card-wrapper">
                             <div className="user-card-counter"></div>
                             <div className="user-card-avatar">
