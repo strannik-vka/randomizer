@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import PageLayout from "../widgets/PageLayout/ui/PageLayout"
-import { BackendAPI, BaseURL } from "../shared/api/BackendAPI";
-import TabButtons from "../shared/ui/TabButtons";
 import IdButton from "../features/giveaway/IdButton/ui/IdButton";
 import { Link } from "react-router-dom";
 import { route } from "../entities/route/lib";
+import { Tooltip } from "react-tooltip";
 
 const ProfilePage = (props) => {
-
-
     return (props.user?.id &&
         <PageLayout preloader={props.preloader}>
             <div className="wrapper wrapper-max">
@@ -36,8 +33,7 @@ const ProfilePage = (props) => {
                                                                     <span>{props.user.status.name}</span>
                                                                 </div>
                                                             </div>
-                                                            <div className="tooltip-icon" data-tooltip-position="bottom center"
-                                                                data-tooltip-toggle="user-tooltip">
+                                                            <div className="tooltip-icon">
                                                                 <svg width="14.400391" height="14.400024"
                                                                     viewBox="0 0 14.4004 14.4" fill="none"
                                                                     xmlns="http://www.w3.org/2000/svg"
@@ -124,6 +120,13 @@ const ProfilePage = (props) => {
                     </div>
                 </div>
             </div>
+
+            <Tooltip anchorSelect=".tooltip-icon" place="bottom">
+                <div className="text-center">
+                    Чем больше побед,<br />
+                    тем выше ваш уровень.
+                </div>
+            </Tooltip>
         </PageLayout>
     )
 }

@@ -139,3 +139,7 @@ img {
 #mysprite {
     display: none;
 }
+
+[role="tooltip"] {
+    z-index: 9999;
+}
