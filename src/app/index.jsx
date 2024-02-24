@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react"
-import './scss/app.scss'
-import './scss/pages/main.scss'
+import React, { useEffect, useState } from "react"
+import { RouterProvider, createBrowserRouter } from "react-router-dom"
 
 import IndexPage from "../pages/IndexPage"
-import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import MyGiveawaysPage from "../pages/MyGiveawaysPage"
 import ProfilePage from "../pages/ProfilePage"
 import { getMe } from "../entities/user/api"
 import GiveawaysPage from "../pages/GiveawaysPage"
-import appConfig from "./config/app"
 import { route } from "../entities/route/lib"
+import GiveawayPage from "../pages/GiveawayPage"
+
+import './scss/app.scss'
+import './scss/pages/main.scss'
 
 const App = () => {
     const [preloader, setPreloader] = useState(true);
@@ -42,6 +43,10 @@ const App = () => {
             path: route("giveaways"),
             element: <GiveawaysPage preloader={preloader} />
         },
+        {
+            path: route('giveaway/:giveawayId'),
+            element: <GiveawayPage preloader={preloader} />
+        }
     ]);
 
     return (
@@ -49,4 +54,4 @@ const App = () => {
     )
 }
 
-export default App
+export default React.memo(App)

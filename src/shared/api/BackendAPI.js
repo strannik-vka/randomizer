@@ -14,18 +14,26 @@ export const BackendAPI = {
     get: (method, options) => {
         let response = { data: {} };
 
+        console.log('get: ' + method, options)
+
         if (method == 'getGiveawayStats') {
             response = {
                 data: {
                     "ok": true,
                     "participants_count": 100,
                     "joined": false,
-                    "status": "end", // или "end" если завершен
+                    "status": "start", // или "end" если завершен
+                    "winners_count": 5,
+                    "deadline": {
+                        "type": "time",
+                        "time": 1708769428 // unixtime
+                    }, // ИЛИ {"type": "members", "members": 100} - завершение по числу участников
                     "owner": {
                         "channel_id": -100123,
                         "channel_name": "Test channel name",
                         "channel_link": "https://t.me/test" // или null, если канал приватный
                     },
+                    "top_msg_link": "https://t.me/c/123/42", // ссылка на первый пост или null`
                     "participants": [
                         {
                             "name": "Иван Иванов",
@@ -40,11 +48,6 @@ export const BackendAPI = {
                         {
                             "name": "Иван Иванов",
                             "id": 1876789,
-                            "is_winner": false
-                        },
-                        {
-                            "name": "Иван Иванов",
-                            "id": 213,
                             "is_winner": false
                         }
                     ]
