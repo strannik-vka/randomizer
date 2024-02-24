@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import { BaseURL } from "../../../shared/api/BackendAPI"
+import { route } from "../../../entities/route/lib"
 
 const UserBadge = (props) => {
     return (
@@ -37,7 +38,7 @@ const UserBadge = (props) => {
                     </div>
                 </div>
             </div>
-            <Link to="/profile" className="stretched-link" />
+            <Link to={route('profile')} className="stretched-link" />
         </div>
     )
 }

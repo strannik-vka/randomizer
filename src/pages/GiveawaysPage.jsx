@@ -7,7 +7,7 @@ const GiveawaysPage = (props) => {
     const [list, setList] = useState(null);
 
     const getList = () => {
-        BackendAPI.get('getGiveaways')
+        BackendAPI.get('getAllGiveaways')
             .then(response => {
                 if (response.data?.giveaways) {
                     setList(response.data.giveaways)

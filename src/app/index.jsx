@@ -8,6 +8,8 @@ import MyGiveawaysPage from "../pages/MyGiveawaysPage"
 import ProfilePage from "../pages/ProfilePage"
 import { getMe } from "../entities/user/api"
 import GiveawaysPage from "../pages/GiveawaysPage"
+import appConfig from "./config/app"
+import { route } from "../entities/route/lib"
 
 const App = () => {
     const [preloader, setPreloader] = useState(true);
@@ -25,19 +27,19 @@ const App = () => {
 
     const router = createBrowserRouter([
         {
-            path: "/",
+            path: route(''),
             element: <IndexPage preloader={preloader} user={user} />,
         },
         {
-            path: "MyGiveaways",
+            path: route("MyGiveaways"),
             element: <MyGiveawaysPage preloader={preloader} />
         },
         {
-            path: "profile",
+            path: route("profile"),
             element: <ProfilePage preloader={preloader} user={user} />
         },
         {
-            path: "giveaways",
+            path: route("giveaways"),
             element: <GiveawaysPage preloader={preloader} />
         },
     ]);

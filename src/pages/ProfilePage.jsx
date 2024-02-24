@@ -4,6 +4,7 @@ import { BackendAPI, BaseURL } from "../shared/api/BackendAPI";
 import TabButtons from "../shared/ui/TabButtons";
 import IdButton from "../features/giveaway/IdButton/ui/IdButton";
 import { Link } from "react-router-dom";
+import { route } from "../entities/route/lib";
 
 const ProfilePage = (props) => {
 
@@ -114,10 +115,10 @@ const ProfilePage = (props) => {
                         </div>
                         <div className="row g-3">
                             <div className="col-12">
-                                <Link to="/giveaways" className="btn btn-lg btn-primary btn-gradient w-100">Все розыгрыши</Link>
+                                <Link to={route('giveaways')} className="btn btn-lg btn-primary btn-gradient w-100">Все розыгрыши</Link>
                             </div>
                             <div className="col-12">
-                                <Link to="/MyGiveaways" className="btn btn-lg btn-blue btn-colored btn-dimmed w-100">Мои розыгрыши</Link>
+                                <Link to={route('MyGiveaways')} className="btn btn-lg btn-blue btn-colored btn-dimmed w-100">Мои розыгрыши</Link>
                             </div>
                         </div>
                     </div>

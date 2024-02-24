@@ -137,7 +137,7 @@ export const BackendAPI = {
             }
         }
 
-        if (method == 'getGiveaways') {
+        if (method == 'getAllGiveaways') {
             response = {
                 data: {
                     "ok": true,

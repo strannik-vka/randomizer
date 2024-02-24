@@ -1,6 +1,7 @@
 import React from "react"
 import declOfNum from "../../../shared/lib/declOdNum"
 import { Link } from "react-router-dom"
+import { route } from "../../../entities/route/lib"
 
 const GiveawaysCount = (props) => {
     return (
@@ -22,7 +23,7 @@ const GiveawaysCount = (props) => {
                             </svg>
                         </div>
                     </div>
-                    <Link to="/MyGiveaways" className="stretched-link"></Link>
+                    <Link to={route('MyGiveaways')} className="stretched-link"></Link>
                 </div>
             </div>
         </div>
