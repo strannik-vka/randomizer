@@ -5,18 +5,45 @@ import GiveawayCard from "../widgets/giveaway/ui/GiveawayCard";
 
 const GiveawaysPage = (props) => {
     const [list, setList] = useState(null);
+    const [page, setPage] = useState(null);
+    const [isNextPage, setIsNextPage] = useState(false);
 
-    const getList = () => {
-        BackendAPI.get('getAllGiveaways')
+    const count = 1;
+
+    const getList = (page) => {
+        BackendAPI.get('getAllGiveaways', {
+            params: {
+                page: page
+            }
+        })
             .then(response => {
                 if (response.data?.giveaways) {
-                    setList(response.data.giveaways)
+                    if (response.data.giveaways.length >= count) {
+                        setIsNextPage(true);
+                    } else {
+                        setIsNextPage(false);
+                    }
+
+                    setList(prevList => {
+                        const prevListArr = Array.isArray(prevList) ? prevList : [];
+
+                        return [
+                            ...prevListArr,
+                            ...response.data.giveaways
+                        ]
+                    })
                 }
             })
     }
 
     useEffect(() => {
-        getList()
+        if (typeof page === 'number') {
+            getList(page);
+        }
+    }, [page])
+
+    useEffect(() => {
+        setPage(0)
     }, [])
 
     return (
@@ -48,6 +75,22 @@ const GiveawaysPage = (props) => {
                                 list.map(item => (
                                     <GiveawayCard key={item.channel_id} {...item} />
                                 ))
+                            }
+
+                            {isNextPage &&
+                                <button
+                                    type="button"
+                                    className="btn btn-lg btn-blue btn-icon btn-more"
+                                    onClick={() => setPage(page + 1)}
+                                >
+                                    <span className="btn-icon-text">Показать ещё</span>
+                                    <svg width="18.000000" height="18.000000" viewBox="0 0 18 18" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                                        <path id="icon"
+                                            d="M2.36426 6.06665L3.63672 4.79395L9.18848 10.345L14.7393 4.79395L16.0117 6.06665L9.18848 12.8906L2.36426 6.06665Z"
+                                            fill="currentColor" fillOpacity="0.500000" fillRule="evenodd" />
+                                    </svg>
+                                </button>
                             }
                         </div>
 
