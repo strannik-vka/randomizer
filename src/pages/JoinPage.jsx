@@ -9,7 +9,7 @@ import GiveawaysCount from "../widgets/giveaway/ui/GiveawaysCount";
 import PageLayout from "../widgets/PageLayout/ui/PageLayout";
 import { useParams } from "react-router-dom";
 
-const IndexPage = (props) => {
+const JoinPage = (props) => {
     let { giveawayId } = useParams();
 
     const [sponsor, setSponsor] = useState(null);
@@ -139,4 +139,4 @@ const IndexPage = (props) => {
     )
 }
 
-export default React.memo(IndexPage)
+export default React.memo(JoinPage)

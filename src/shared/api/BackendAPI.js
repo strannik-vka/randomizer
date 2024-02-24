@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const BaseURL = 'https://iselectbot-mock.difhel.dev/api/';
+export const BaseURL = 'https://selectbot.ru/api/';
 
 export const BackendAPI = axios.create({
     baseURL: BaseURL,

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 
-import IndexPage from "../pages/IndexPage"
+import JoinPage from "../pages/JoinPage"
 import MyGiveawaysPage from "../pages/MyGiveawaysPage"
 import ProfilePage from "../pages/ProfilePage"
 import { getMe } from "../entities/user/api"
@@ -28,8 +28,8 @@ const App = () => {
 
     const router = createBrowserRouter([
         {
-            path: route(':giveawayId'),
-            element: <IndexPage preloader={preloader} user={user} />,
+            path: route('join/:giveawayId'),
+            element: <JoinPage preloader={preloader} user={user} />,
         },
         {
             path: route("MyGiveaways"),
