@@ -1,5 +1,5 @@
 const appConfig = {
-    appPath: '/webapp/'
+    appPath: '/'
 }
 
 export default appConfig
