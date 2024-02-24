@@ -7,7 +7,7 @@ const JoinButton = (props) => {
     useEffect(() => {
         if (joining) {
             BackendAPI.get('join', {
-                giveaway_id: props.giveaway_id
+                giveaway_id: props.giveawayId
             }).then((response) => {
                 setJoining(false);
 
@@ -18,9 +18,9 @@ const JoinButton = (props) => {
                 setJoining(false);
             })
         }
-    }, [props.giveaway_id, props.onJoin, joining])
+    }, [props.giveawayId, props.onJoin, joining])
 
-    return (props.giveaway_id &&
+    return (props.giveawayId &&
         <button
             onClick={joining ? () => { } : () => setJoining(true)}
             className="btn btn-lg btn-primary btn-gradient w-100"

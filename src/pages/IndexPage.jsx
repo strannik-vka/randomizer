@@ -1,16 +1,17 @@
 import ParticipantsHeader from "../widgets/participant/ui/ParticipantsHeader"
 import React, { useCallback, useEffect, useState } from "react";
 import { BackendAPI } from "../shared/api/BackendAPI";
-import URLParam from "../shared/lib/URLParam";
 import Bottom from "../widgets/bottom/ui/Bottom";
 import Menu from "../widgets/menu/ui/Menu";
 import ParticipantsList from "../widgets/participant/ui/ParticipantsList";
 import AnimationText from "../widgets/AnimationText/ui/AnimationText";
 import GiveawaysCount from "../widgets/giveaway/ui/GiveawaysCount";
 import PageLayout from "../widgets/PageLayout/ui/PageLayout";
+import { useParams } from "react-router-dom";
 
 const IndexPage = (props) => {
-    const giveaway_id = URLParam('giveaway_id');
+    let { giveawayId } = useParams();
+
     const [sponsor, setSponsor] = useState(null);
     const [joined, setJoined] = useState(false);
     const [participants, setParticipants] = useState(null);
@@ -21,20 +22,22 @@ const IndexPage = (props) => {
     const [giveawayStatus, setGiveawayStatus] = useState(false);
 
     const getGiveawayStats = useCallback(() => {
-        BackendAPI.get('getGiveawayStats', {
-            giveaway_id: giveaway_id
-        }).then(response => {
-            setJoined(response.data?.joined);
-            setParticipants(response.data?.participants);
-            setParticipantsCount(response.data?.participants_count);
-            setSponsor(response.data?.owner);
-            setGiveawayStatus(response.data?.status);
+        if (giveawayId) {
+            BackendAPI.get('getGiveawayStats', {
+                giveaway_id: giveawayId
+            }).then(response => {
+                setJoined(response.data?.joined);
+                setParticipants(response.data?.participants);
+                setParticipantsCount(response.data?.participants_count);
+                setSponsor(response.data?.owner);
+                setGiveawayStatus(response.data?.status);
 
-            setChecking(false);
-        }).catch(() => {
-            setChecking(false);
-        })
-    }, [giveaway_id]);
+                setChecking(false);
+            }).catch(() => {
+                setChecking(false);
+            })
+        }
+    }, [giveawayId]);
 
     const onJoin = useCallback((data) => {
         setOnJoin(data.id ? (
@@ -68,7 +71,7 @@ const IndexPage = (props) => {
     }, [checking])
 
     useEffect(() => {
-        if (giveaway_id) {
+        if (giveawayId) {
             setChecking(true);
         }
     }, [])
@@ -76,7 +79,7 @@ const IndexPage = (props) => {
     return (
         <PageLayout preloader={props.preloader}>
             <div className="wrapper">
-                {giveaway_id &&
+                {giveawayId &&
                     <ParticipantsHeader
                         count={participantsCount}
                         list={participants}
@@ -96,10 +99,10 @@ const IndexPage = (props) => {
                                             joined={joined}
                                             sponsor={sponsor}
                                             giveawayStatus={giveawayStatus}
-                                            giveawayId={giveaway_id}
+                                            giveawayId={giveawayId}
                                         />
 
-                                        {(props.user?.giveaways_participated > 0 && giveaway_id) &&
+                                        {(props.user?.giveaways_participated > 0 && giveawayId) &&
                                             <GiveawaysCount
                                                 count={props.user.giveaways_participated}
                                             />
@@ -111,9 +114,9 @@ const IndexPage = (props) => {
                     </section>
                 </main>
 
-                {giveaway_id &&
+                {giveawayId &&
                     <Bottom
-                        giveaway_id={giveaway_id}
+                        giveawayId={giveawayId}
                         onJoin={onJoin}
                         joined={joined}
                         checking={checking}

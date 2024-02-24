@@ -42,7 +42,7 @@ const AnimationText = (props) => {
                             <div className="fs-lg fw-600">Упс!</div>
                             <span className="fw-500">
                                 Некорректная ссылка,<br />
-                                нет параметра <b>giveaway_id</b>
+                                нет параметра <b>giveawayId</b>
                             </span>
                         </>
                     ) : props.checking ? (

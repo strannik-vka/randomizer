@@ -28,7 +28,7 @@ const App = () => {
 
     const router = createBrowserRouter([
         {
-            path: route(''),
+            path: route(':giveawayId'),
             element: <IndexPage preloader={preloader} user={user} />,
         },
         {
