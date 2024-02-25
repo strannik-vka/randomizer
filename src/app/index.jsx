@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { RouterProvider, createBrowserRouter } from "react-router-dom"
+import { RouterProvider, createBrowserRouter, redirect } from "react-router-dom"
 
 import JoinPage from "../pages/JoinPage"
 import MyGiveawaysPage from "../pages/MyGiveawaysPage"
@@ -11,6 +11,7 @@ import GiveawayPage from "../pages/GiveawayPage"
 
 import './scss/app.scss'
 import './scss/pages/main.scss'
+import IndexPage from "../pages/IndexPage"
 
 const App = () => {
     const [preloader, setPreloader] = useState(true);
@@ -23,10 +24,14 @@ const App = () => {
     }, [user])
 
     useEffect(() => {
-        getMe(setUser)
+        getMe(setUser);
     }, [])
 
     const router = createBrowserRouter([
+        {
+            path: route(''),
+            element: <IndexPage preloader={preloader} />,
+        },
         {
             path: route('join/:giveawayId'),
             element: <JoinPage preloader={preloader} user={user} />,
