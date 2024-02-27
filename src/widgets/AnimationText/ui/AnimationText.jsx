@@ -77,8 +77,7 @@ const AnimationText = (props) => {
                         <>
                             <div className="fs-lg fw-600">Упс!</div>
                             <span className="fw-500">
-                                Вы уже участвуете в розыгрыше, <br />от канала
-                                {props.sponsor?.channel_link ? (
+                                Вы уже участвуете в розыгрыше, <br />от канала {props.sponsor?.channel_link ? (
                                     <a
                                         href={props.sponsor.channel_link}
                                         target="_blank"

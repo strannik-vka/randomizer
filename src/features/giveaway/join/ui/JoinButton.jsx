@@ -14,6 +14,10 @@ const JoinButton = (props) => {
                 setJoining(false);
 
                 if (typeof props.onJoin === 'function') {
+                    if (response.data?.ok) {
+                        response.data.id = props.giveawayId;
+                    }
+
                     props.onJoin(response.data);
                 }
             }).catch((error) => {
@@ -33,9 +37,12 @@ const JoinButton = (props) => {
             disabled={props.checking}
         >
             {joining ? (
-                <div className="spinner-border" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
+                <>
+                    &nbsp;
+                    <div className="spinner-border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                </>
             ) : (
                 'Принять участие'
             )}

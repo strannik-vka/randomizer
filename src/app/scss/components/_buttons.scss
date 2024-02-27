@@ -1,4 +1,6 @@
 .btn {
+    position: relative;
+
     --bs-btn-padding-x: 1rem;
     --bs-btn-padding-y: 1rem;
     --bs-btn-font-family: "Montserrat";
@@ -190,6 +192,14 @@
             --bs-btn-border-color: transparent;
             --bs-border-radius: 1.88rem 1.88rem 0rem 0rem;
         }
+    }
+
+    .spinner-border {
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 }
 
