@@ -16,8 +16,12 @@ const JoinButton = (props) => {
                 if (typeof props.onJoin === 'function') {
                     props.onJoin(response.data);
                 }
-            }).catch(() => {
+            }).catch((error) => {
                 setJoining(false);
+
+                if (typeof props.onJoin === 'function') {
+                    props.onJoin(error.response.data);
+                }
             })
         }
     }, [props.giveawayId, props.onJoin, joining])
