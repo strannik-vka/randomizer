@@ -15,7 +15,7 @@ const IndexPage = (props) => {
             } else if (telegramParam.indexOf('giveaway:') > -1) {
                 const paramArr = telegramParam.split(':');
 
-                if (paramArr.length > 0) {
+                if (paramArr.length > 1) {
                     navigate(route('giveaway/:' + paramArr[1]));
                 }
             } else {
