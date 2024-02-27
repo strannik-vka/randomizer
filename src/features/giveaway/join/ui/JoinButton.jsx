@@ -7,7 +7,9 @@ const JoinButton = (props) => {
     useEffect(() => {
         if (joining) {
             BackendAPI.get('join', {
-                giveaway_id: props.giveawayId
+                params: {
+                    giveaway_id: props.giveawayId
+                }
             }).then((response) => {
                 setJoining(false);
 
