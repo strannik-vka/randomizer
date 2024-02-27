@@ -8,7 +8,7 @@ const GiveawaysPage = (props) => {
     const [page, setPage] = useState(null);
     const [isNextPage, setIsNextPage] = useState(false);
 
-    const count = 1;
+    const count = 100;
 
     const getList = (page) => {
         BackendAPI.get('getAllGiveaways', {
