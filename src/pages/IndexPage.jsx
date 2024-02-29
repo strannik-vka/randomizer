@@ -16,7 +16,7 @@ const IndexPage = (props) => {
                 const paramArr = telegramParam.split('_');
 
                 if (paramArr.length > 1) {
-                    navigate(route('giveaway/:' + paramArr[1]));
+                    navigate(route('giveaway/' + paramArr[1]));
                 }
             } else {
                 navigate(route('join/' + telegramParam));
