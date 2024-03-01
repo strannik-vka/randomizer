@@ -9,7 +9,7 @@ const GiveawayWinnerCard = (props) => {
     const images = [goldImage, silverImage, bronzeImage]
     const user = props.giveaway.participants[props.index];
 
-    return (
+    return (user?.id &&
         <div className="winner-card">
             <div className="winner-card-wrapper">
                 <div className="winner-card-tags">
