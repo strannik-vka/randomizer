@@ -1,6 +1,6 @@
 import React from "react"
-import { BaseURL } from "../../../shared/api/BackendAPI";
 import declOfNum from "../../../shared/lib/declOdNum";
+import AvatarImg from "../../../features/AvatarImg/ui/AvatarImg";
 
 const ParticipantsHeader = (props) => {
     const list = Array.isArray(props.list) ? props.list : [];
@@ -17,7 +17,7 @@ const ParticipantsHeader = (props) => {
                                     {
                                         listLimit.map(item => (
                                             <div key={item.id} className="sticky-block-icon">
-                                                <img src={BaseURL + 'getAvatar?id=' + item.id} />
+                                                <AvatarImg user_id={item.id} />
                                             </div>
                                         ))
                                     }

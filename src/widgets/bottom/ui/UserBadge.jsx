@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { BaseURL } from "../../../shared/api/BackendAPI"
 import { route } from "../../../entities/route/lib"
+import AvatarImg from "../../../features/AvatarImg/ui/AvatarImg"
 
 const UserBadge = (props) => {
     return (
@@ -11,7 +11,7 @@ const UserBadge = (props) => {
                     <div className="user-badge-counter"></div>
                 }
                 <div className="user-badge-avatar">
-                    <img src={BaseURL + 'getAvatar?id=' + props.user.id} />
+                    <AvatarImg user_id={props.user.id} />
                 </div>
                 <div className="user-badge-content">
                     <div className="user-badge-name">

@@ -1,12 +1,12 @@
 import React from "react";
-import { BaseURL } from "../../../shared/api/BackendAPI";
+import AvatarImg from "../../../features/AvatarImg/ui/AvatarImg";
 
 const GiveawayCard = (props) => {
     return (
         <div key={props.channel_id} className="draw-card">
             <div className="draw-card-wrapper">
                 <div className="draw-card-avatar">
-                    <img src={BaseURL + 'getAvatar?id=' + props.channel_id} />
+                    <AvatarImg channel_id={props.channel_id} />
                 </div>
                 <div className="draw-card-content">
                     <div className="draw-card-name">

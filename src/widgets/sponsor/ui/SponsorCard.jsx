@@ -1,5 +1,5 @@
 import React from "react"
-import { BaseURL } from "../../../shared/api/BackendAPI"
+import AvatarImg from "../../../features/AvatarImg/ui/AvatarImg"
 
 const SponsorCard = (props) => {
     return (props.id &&
@@ -8,7 +8,7 @@ const SponsorCard = (props) => {
                 <div className="row g-4 align-items-center">
                     <div className="col-auto">
                         <div className="card-link-icon">
-                            <img src={BaseURL + 'getAvatar?id=' + props.id} />
+                            <AvatarImg channel_id={props.id} />
                         </div>
                     </div>
                     <div className="col">

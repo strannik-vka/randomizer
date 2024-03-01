@@ -2,8 +2,8 @@ import React from "react"
 import goldImage from '../../../app/assets/images/elements/cup/gold.png'
 import silverImage from '../../../app/assets/images/elements/cup/silver.png'
 import bronzeImage from '../../../app/assets/images/elements/cup/bronze.png'
-import { BaseURL } from "../../../shared/api/BackendAPI"
 import moment from "moment"
+import AvatarImg from "../../../features/AvatarImg/ui/AvatarImg"
 
 const GiveawayWinnerCard = (props) => {
     const images = [goldImage, silverImage, bronzeImage]
@@ -31,7 +31,7 @@ const GiveawayWinnerCard = (props) => {
                 <div className="winner-card-content">
                     <div className="winner-badge winner-badge-glass">
                         <div className="winner-badge-avatar">
-                            <img src={BaseURL + 'getAvatar?id=' + user.id} />
+                            <AvatarImg user_id={user.id} />
                         </div>
                         <div className="winner-badge-content">
                             <div className="winner-badge-name">

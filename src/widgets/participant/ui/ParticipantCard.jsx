@@ -1,5 +1,5 @@
 import React from "react";
-import { BaseURL } from "../../../shared/api/BackendAPI";
+import AvatarImg from "../../../features/AvatarImg/ui/AvatarImg";
 
 const ParticipantCard = (props) => {
     return (
@@ -7,7 +7,7 @@ const ParticipantCard = (props) => {
             <div className="user-card-wrapper">
                 <div className="user-card-counter"></div>
                 <div className="user-card-avatar">
-                    <img src={BaseURL + 'getAvatar?id=' + props.id} />
+                    <AvatarImg user_id={props.id} />
                 </div>
                 <div className="user-card-content">
                     <div className="user-card-name">

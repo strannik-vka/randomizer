@@ -25,7 +25,8 @@ const JoinPage = (props) => {
         if (giveawayId) {
             BackendAPI.get('getGiveawayStats', {
                 params: {
-                    giveaway_id: giveawayId
+                    giveaway_id: giveawayId,
+                    onJoined: onJoined
                 }
             }).then(response => {
                 setJoined(response.data?.joined);
@@ -39,7 +40,7 @@ const JoinPage = (props) => {
                 setChecking(false);
             })
         }
-    }, [giveawayId]);
+    }, [giveawayId, onJoined]);
 
     const onJoin = useCallback((data) => {
         setOnJoin(data.id ? (

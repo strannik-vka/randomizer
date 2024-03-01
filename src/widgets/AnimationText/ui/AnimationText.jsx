@@ -18,11 +18,11 @@ const AnimationText = (props) => {
                                 errorAnimation
                             ) : props.checking ? (
                                 checkAnimation
-                            ) : typeof props.onJoined === 'number' ? (
-                                successAnimation
                             ) : props.onJoined === 'CONDITIONS_ARE_NOT_MET' ? (
                                 errorAnimation
                             ) : props.onJoined === 'IP_BLOCKED' ? (
+                                successAnimation
+                            ) : props.onJoined ? (
                                 successAnimation
                             ) : props.giveawayStatus == 'end' ? (
                                 finishAnimation
@@ -50,11 +50,6 @@ const AnimationText = (props) => {
                             Проверяем, выполнены ли<br />
                             все условия розыгрыша...
                         </>
-                    ) : typeof props.onJoined === 'number' ? (
-                        <>
-                            <div className="fs-lg fw-600">Поздравляем!</div>
-                            <span className="fw-500">Вы участвуете в розыгрыше</span>
-                        </>
                     ) : props.onJoined === 'CONDITIONS_ARE_NOT_MET' ? (
                         <>
                             Вы выполнили не все условия<br />
@@ -62,6 +57,11 @@ const AnimationText = (props) => {
                             перепроверьте условия {props.sponsor?.channel_link ? <a target="_blank" href={props.sponsor.channel_link}>в посте</a> : 'в посте'}
                         </>
                     ) : props.onJoined === 'IP_BLOCKED' ? (
+                        <>
+                            <div className="fs-lg fw-600">Поздравляем!</div>
+                            <span className="fw-500">Вы участвуете в розыгрыше</span>
+                        </>
+                    ) : props.onJoined ? (
                         <>
                             <div className="fs-lg fw-600">Поздравляем!</div>
                             <span className="fw-500">Вы участвуете в розыгрыше</span>
