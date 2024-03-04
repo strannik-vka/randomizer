@@ -3,6 +3,21 @@ import { BackendAPI } from "../../../../shared/api/BackendAPI"
 
 const JoinButton = (props) => {
     const [joining, setJoining] = useState(false)
+    const [disabled, setDisabled] = useState(false)
+
+    const onJoin = (data) => {
+        if (typeof props.onJoin === 'function') {
+            if (data?.ok) {
+                data.id = props.giveawayId;
+            }
+
+            if (data?.error == 'CONDITIONS_ARE_NOT_MET') {
+                setDisabled(true);
+            }
+
+            props.onJoin(data);
+        }
+    }
 
     useEffect(() => {
         if (joining) {
@@ -13,19 +28,11 @@ const JoinButton = (props) => {
             }).then((response) => {
                 setJoining(false);
 
-                if (typeof props.onJoin === 'function') {
-                    if (response.data?.ok) {
-                        response.data.id = props.giveawayId;
-                    }
-
-                    props.onJoin(response.data);
-                }
+                onJoin(response.data);
             }).catch((error) => {
                 setJoining(false);
 
-                if (typeof props.onJoin === 'function') {
-                    props.onJoin(error.response.data);
-                }
+                onJoin(error.response.data);
             })
         }
     }, [props.giveawayId, props.onJoin, joining])
@@ -34,7 +41,7 @@ const JoinButton = (props) => {
         <button
             onClick={joining ? () => { } : () => setJoining(true)}
             className="btn btn-lg btn-primary btn-gradient w-100"
-            disabled={props.checking}
+            disabled={props.checking || disabled}
         >
             {joining ? (
                 <>
