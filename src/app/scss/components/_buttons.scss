@@ -1,5 +1,7 @@
 .btn {
     position: relative;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
 
     --bs-btn-padding-x: 1rem;
     --bs-btn-padding-y: 1rem;
@@ -55,6 +57,8 @@
     }
     & .spinner-border {
         padding: 0;
+        --bs-spinner-width: var(--bs-btn-font-size);
+        --bs-spinner-height: var(--bs-btn-font-size);
     }
     &:hover {
         color: var(--bs-btn-hover-color);
@@ -192,14 +196,6 @@
             --bs-btn-border-color: transparent;
             --bs-border-radius: 1.88rem 1.88rem 0rem 0rem;
         }
-    }
-
-    .spinner-border {
-        position: absolute;
-        z-index: 1;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
     }
 }
 
