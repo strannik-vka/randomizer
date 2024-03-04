@@ -43,7 +43,7 @@ const GiveawayPage = (props) => {
                             <div className="col-12">
                                 <div className="user-list user-list-winner">
                                     {
-                                        giveaway.participants.map(item => (
+                                        giveaway.participants.map((item, index) => (index > 2 &&
                                             <ParticipantCard
                                                 key={item.id}
                                                 {...item}
