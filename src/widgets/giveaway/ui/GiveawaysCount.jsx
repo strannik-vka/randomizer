@@ -5,7 +5,7 @@ import { route } from "../../../entities/route/lib"
 
 const GiveawaysCount = (props) => {
     return (
-        <div className="col-12">
+        <div className="col-12" style={{ marginTop: '2.875rem' }}>
             <div className="container">
                 <div className="badge">
                     <div className="badge-wrapper">
