@@ -29,26 +29,32 @@ const GiveawayWinnerSlider = (props) => {
             modules={[Navigation]}
             spaceBetween={0}
             slidesPerView={1}
-            navigation
+            navigation={props.giveaway.winners_count > 1 ? true : false}
         >
-            <SwiperSlide>
-                <GiveawayWinnerCard
-                    giveaway={props.giveaway}
-                    index={0}
-                />
-            </SwiperSlide>
-            <SwiperSlide>
-                <GiveawayWinnerCard
-                    giveaway={props.giveaway}
-                    index={1}
-                />
-            </SwiperSlide>
-            <SwiperSlide>
-                <GiveawayWinnerCard
-                    giveaway={props.giveaway}
-                    index={2}
-                />
-            </SwiperSlide>
+            {props.giveaway.winners_count > 0 &&
+                <SwiperSlide>
+                    <GiveawayWinnerCard
+                        giveaway={props.giveaway}
+                        index={0}
+                    />
+                </SwiperSlide>
+            }
+            {props.giveaway.winners_count > 1 &&
+                <SwiperSlide>
+                    <GiveawayWinnerCard
+                        giveaway={props.giveaway}
+                        index={1}
+                    />
+                </SwiperSlide>
+            }
+            {props.giveaway.winners_count > 2 &&
+                <SwiperSlide>
+                    <GiveawayWinnerCard
+                        giveaway={props.giveaway}
+                        index={2}
+                    />
+                </SwiperSlide>
+            }
         </Swiper>
     )
 }

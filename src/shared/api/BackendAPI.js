@@ -23,7 +23,7 @@ export const BackendAPI = axios.create({
 //                     "participants_count": 100,
 //                     "joined": false,
 //                     "status": "start", // или "end" если завершен
-//                     "winners_count": 5,
+//                     "winners_count": 3,
 //                     "deadline": {
 //                         "type": "time",
 //                         "time": 1708769428 // unixtime
@@ -48,6 +48,11 @@ export const BackendAPI = axios.create({
 //                         {
 //                             "name": "Иван Иванов",
 //                             "id": 1876789,
+//                             "is_winner": false
+//                         },
+//                         {
+//                             "name": "Иван Иванов",
+//                             "id": 18767289,
 //                             "is_winner": false
 //                         }
 //                     ]
