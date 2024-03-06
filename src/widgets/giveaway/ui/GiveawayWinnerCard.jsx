@@ -4,6 +4,7 @@ import silverImage from '../../../app/assets/images/elements/cup/silver.png'
 import bronzeImage from '../../../app/assets/images/elements/cup/bronze.png'
 import moment from "moment"
 import AvatarImg from "../../../features/AvatarImg/ui/AvatarImg"
+import StretchedLink from "../../../shared/ui/StretchedLink"
 
 const GiveawayWinnerCard = (props) => {
     const images = [goldImage, silverImage, bronzeImage]
@@ -47,7 +48,7 @@ const GiveawayWinnerCard = (props) => {
                                 )}
                             </div>
                         </div>
-                        <a href={'tg://user?id=' + user.id} className="stretched-link"></a>
+                        <StretchedLink url={'tg://user?id=' + user.id} />
                     </div>
                 </div>
             </div>

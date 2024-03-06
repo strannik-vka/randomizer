@@ -1,5 +1,6 @@
 import React from "react";
 import AvatarImg from "../../../features/AvatarImg/ui/AvatarImg";
+import StretchedLink from "../../../shared/ui/StretchedLink";
 
 const ParticipantCard = (props) => {
     return (
@@ -28,7 +29,7 @@ const ParticipantCard = (props) => {
                     </div>
                 </div>
             </div>
-            <a href={'tg://user?id=' + props.id} className="stretched-link"></a>
+            <StretchedLink url={'tg://user?id=' + user.id} />
         </div>
     )
 }
