@@ -29,7 +29,7 @@ const ParticipantCard = (props) => {
                     </div>
                 </div>
             </div>
-            <StretchedLink url={'tg://user?id=' + user.id} />
+            <StretchedLink url={'tg://user?id=' + props.id} />
         </div>
     )
 }
