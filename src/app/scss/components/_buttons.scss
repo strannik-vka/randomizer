@@ -16,7 +16,7 @@
     --bs-border-radius: 1.56rem;
     --bs-btn-hover-border-color: transparent;
     --bs-btn-box-shadow: unset;
-    --bs-btn-disabled-opacity: 0.65;
+    --bs-btn-disabled-opacity: 0.5;
     --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), 0.5);
     --bs-btn-letter-spacing: 0;
     display: inline-block;
@@ -280,6 +280,9 @@
             --bs-btn-color: var(--white);
             --bs-btn-hover-color: var(--white);
             --bs-btn-active-color: var(--white);
+        }
+        &:disabled {
+            --bs-btn-bg: linear-gradient(225deg, #75afff, #4894fe 100%);
         }
     }
     .btn-colored {
