@@ -1,12 +1,29 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import PageLayout from "../widgets/PageLayout/ui/PageLayout"
 import IdButton from "../features/giveaway/IdButton/ui/IdButton";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { route } from "../entities/route/lib";
 import { Tooltip } from "react-tooltip";
+import { getUser } from "../entities/user/api";
 
 const ProfilePage = (props) => {
-    return (props.user?.id &&
+    const [user, setUser] = useState(null);
+
+    let { userId } = useParams();
+
+    useEffect(() => {
+        if (userId) {
+            getUser(userId, setUser);
+        }
+    }, [userId])
+
+    useEffect(() => {
+        setUser(props.user)
+    }, [props.user])
+
+    console.log(user);
+
+    return (user?.id &&
         <PageLayout preloader={props.preloader}>
             <div className="wrapper wrapper-max">
                 <main className="content flex-grow-0 pt-0">
@@ -20,17 +37,17 @@ const ProfilePage = (props) => {
                                                 <div className="user-badge-wrapper">
                                                     <div className="user-badge-counter"></div>
                                                     <div className="user-badge-avatar">
-                                                        <img src={props.user.image} />
+                                                        <img src={user.image} />
                                                     </div>
                                                     <div className="user-badge-content">
                                                         <div className="user-badge-name">
-                                                            {props.user.name}
+                                                            {user.name}
                                                         </div>
                                                         <div className="user-badge-description">
                                                             <div className="user-status user-status-light">
                                                                 <div className="user-status-wrapper">
-                                                                    <span>{props.user.status.icon}</span>
-                                                                    <span>{props.user.status.name}</span>
+                                                                    <span>{user.status.icon}</span>
+                                                                    <span>{user.status.name}</span>
                                                                 </div>
                                                             </div>
                                                             <div className="tooltip-icon">
@@ -66,7 +83,7 @@ const ProfilePage = (props) => {
                                             Имя
                                         </div>
                                         <div className="profile-fields-value">
-                                            {props.user.name}
+                                            {user.name}
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +93,7 @@ const ProfilePage = (props) => {
                                             id
                                         </div>
                                         <div className="profile-fields-value">
-                                            <IdButton id={props.user.id} textAlign="text-left" />
+                                            <IdButton id={user.id} textAlign="text-left" />
                                         </div>
                                     </div>
                                 </div>
@@ -90,7 +107,7 @@ const ProfilePage = (props) => {
                                         </div>
                                         <div className="profile-fields-value">
                                             <span>🏆</span>
-                                            <span>{props.user.giveaways_won}</span>
+                                            <span>{user.giveaways_won}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -100,7 +117,7 @@ const ProfilePage = (props) => {
                                             Участия
                                         </div>
                                         <div className="profile-fields-value">
-                                            {props.user.giveaways_participated}
+                                            {user.giveaways_participated}
                                         </div>
                                     </div>
                                 </div>

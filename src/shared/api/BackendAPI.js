@@ -72,6 +72,18 @@ const BackendMockAPI = {
             }
         }
 
+        if (method == 'getUser') {
+            response = {
+                data: {
+                    "ok": true,
+                    "id": 1234,
+                    "name": "Саша",
+                    "giveaways_participated": 10,
+                    "giveaways_won": 3
+                }
+            }
+        }
+
         if (method == 'join') {
             response = {
                 data: {

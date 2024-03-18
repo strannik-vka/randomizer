@@ -45,6 +45,10 @@ const App = () => {
             element: <ProfilePage preloader={preloader} user={user} />
         },
         {
+            path: route("profile/:userId"),
+            element: <ProfilePage preloader={preloader} />
+        },
+        {
             path: route("giveaways"),
             element: <GiveawaysPage preloader={preloader} />
         },
