@@ -16,6 +16,8 @@ const MyGiveawaysPage = (props) => {
             .then(response => {
                 if (response.data?.giveaways) {
                     setList(response.data.giveaways)
+                } else {
+                    setList(null)
                 }
             })
     }
