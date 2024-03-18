@@ -38,22 +38,22 @@ const BackendMockAPI = {
                         {
                             "name": "Иван Иванов",
                             "id": 1888,
-                            "is_winner": false
+                            "is_winner": true
                         },
                         {
                             "name": "Иван Иванов",
                             "id": 1987656789,
-                            "is_winner": false
+                            "is_winner": true
                         },
                         {
                             "name": "Иван Иванов",
                             "id": 1876789,
-                            "is_winner": false
+                            "is_winner": true
                         },
                         {
-                            "name": "Иван Иванов",
+                            "name": "Саня Иванов",
                             "id": 18767289,
-                            "is_winner": false
+                            "is_winner": true
                         }
                     ]
                 }

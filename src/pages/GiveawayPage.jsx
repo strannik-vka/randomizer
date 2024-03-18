@@ -22,6 +22,8 @@ const GiveawayPage = (props) => {
         }
     }, [giveawayId])
 
+    const winnerUsers = giveaway?.ok ? giveaway.participants.filter((item) => item.is_winner) : [];
+
     return (giveaway?.ok &&
         <PageLayout preloader={props.preloader}>
             <div className="wrapper">
@@ -37,24 +39,26 @@ const GiveawayPage = (props) => {
                     </section>
                 </main>
 
-                <div className="bottom">
-                    <div className="bottom-inner">
-                        <div className="row g-4">
-                            <div className="col-12">
-                                <div className="user-list user-list-winner">
-                                    {
-                                        giveaway.participants.map((item, index) => (index > (giveaway.winners_count - 1) &&
-                                            <ParticipantCard
-                                                key={item.id}
-                                                {...item}
-                                            />
-                                        ))
-                                    }
+                {winnerUsers.length > 3 &&
+                    <div className="bottom">
+                        <div className="bottom-inner">
+                            <div className="row g-4">
+                                <div className="col-12">
+                                    <div className="user-list user-list-winner">
+                                        {
+                                            winnerUsers.map((item, index) => (index > 2 &&
+                                                <ParticipantCard
+                                                    key={item.id}
+                                                    {...item}
+                                                />
+                                            ))
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                }
             </div>
         </PageLayout>
     )
