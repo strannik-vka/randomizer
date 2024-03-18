@@ -1,6 +1,7 @@
 import React from "react";
 import AvatarImg from "../../../features/AvatarImg/ui/AvatarImg";
 import StretchedLink from "../../../shared/ui/StretchedLink";
+import { route } from "../../../entities/route/lib";
 
 const ParticipantCard = (props) => {
     return (
@@ -29,7 +30,7 @@ const ParticipantCard = (props) => {
                     </div>
                 </div>
             </div>
-            <StretchedLink url={'tg://user?id=' + props.id} />
+            <StretchedLink link={route('profile/' + props.id)} />
         </div>
     )
 }

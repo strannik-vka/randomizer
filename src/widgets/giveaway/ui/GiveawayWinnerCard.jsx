@@ -48,7 +48,7 @@ const GiveawayWinnerCard = (props) => {
                                 )}
                             </div>
                         </div>
-                        <StretchedLink url={'tg://user?id=' + user.id} />
+                        <StretchedLink link={route('profile/' + user.id)} />
                     </div>
                 </div>
             </div>
