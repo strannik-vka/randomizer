@@ -21,6 +21,10 @@ const GiveawayWinnerSlider = (props) => {
         onSlideChange({
             activeIndex: 0
         })
+
+        return () => {
+            document.body.removeAttribute('style')
+        }
     }, [])
 
     return (

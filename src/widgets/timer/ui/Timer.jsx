@@ -16,7 +16,7 @@ const Timer = (props) => {
     const seconds = Math.floor((distance % _minute) / _second);
 
     useEffect(() => {
-        if (distance) {
+        if (distance > 0) {
             const interval = setInterval(() => {
                 setDistance((props.time * 1000) - (+new Date()))
             }, 1000);
@@ -25,7 +25,7 @@ const Timer = (props) => {
         }
     }, [distance]);
 
-    return (
+    return (distance > 0 &&
         <div className={styles.wrap}>
             <div className={styles.time}>{days + ' ' + declOfNum(days, ['день', 'дня', 'дней'])},<br />{hours}:{minutes}:{seconds}</div>
             <div className={styles.description}>До завершения</div>

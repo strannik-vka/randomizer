@@ -5,13 +5,15 @@ import Menu from "../widgets/menu/ui/Menu";
 import ParticipantsList from "../widgets/participant/ui/ParticipantsList";
 import AnimationText from "../widgets/AnimationText/ui/AnimationText";
 import PageLayout from "../widgets/PageLayout/ui/PageLayout";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ChannelList from "../widgets/channels/ui/ChannelList";
 import BottomWrap from "../widgets/bottom/ui/BottomWrap";
 import SponsorCard from "../widgets/sponsor/ui/SponsorCard";
 import JoinButton from "../features/giveaway/join/ui/JoinButton";
 import IdButton from "../features/giveaway/IdButton/ui/IdButton";
 import Timer from "../widgets/timer/ui/Timer";
+import UserBadge from "../widgets/bottom/ui/UserBadge";
+import { route } from "../entities/route/lib";
 
 const JoinPage = (props) => {
     let { giveawayId } = useParams();
@@ -164,30 +166,55 @@ const JoinPage = (props) => {
 
                 {giveawayId &&
                     <BottomWrap>
-                        {isMeParticipant ? <>
-                            <IdButton
-                                id={props.user.id}
-                            />
-                            <div className="mt-1 text-center text-blue">Это ваш ID участника, сохраните</div>
-                            <div className="devider devider-horizontal mt-5 mb-5"></div>
-                            <button
-                                className="btn btn-lg btn-primary btn-gradient w-100 mb-5"
-                            >Подробнее о розыгрыше</button>
-                        </> : <>
-                            <JoinButton
-                                checking={checking}
-                                giveawayId={giveawayId}
-                                onJoin={onJoin}
-                            />
-                            <div style={{ height: '0.625rem' }}></div>
-                        </>}
+                        {giveawayStatus === 'end' ? (
+                            <>
+                                <UserBadge
+                                    user={props.user}
+                                />
+                                <div className="devider devider-horizontal mt-5"></div>
+                                <div className="mt-5" style={{
+                                    fontWeight: 500,
+                                    fontSize: '1.12rem',
+                                    textAlign: 'center',
+                                    color: '#8696bb'
+                                }}>
+                                    Посмотрите дополнительную<br />
+                                    информацию вашего профиля<br />
+                                    в личном кабинете☝️
+                                </div>
+                                <Link
+                                    to={route('giveaway/' + giveawayId)}
+                                    className="btn btn-lg btn-primary btn-gradient w-100 mt-5"
+                                >Смотреть победителей</Link>
+                            </>
+                        ) : (
+                            <>
+                                {isMeParticipant ? <>
+                                    <IdButton
+                                        id={props.user.id}
+                                    />
+                                    <div className="mt-1 text-center text-blue">Это ваш ID участника, сохраните</div>
+                                    <div className="devider devider-horizontal mt-5 mb-5"></div>
+                                    <button
+                                        className="btn btn-lg btn-primary btn-gradient w-100 mb-5"
+                                    >Подробнее о розыгрыше</button>
+                                </> : <>
+                                    <JoinButton
+                                        checking={checking}
+                                        giveawayId={giveawayId}
+                                        onJoin={onJoin}
+                                    />
+                                    <div style={{ height: '0.625rem' }}></div>
+                                </>}
 
-                        <SponsorCard
-                            id={sponsor?.channel_id}
-                            name={sponsor?.channel_name}
-                            url={sponsor?.channel_link}
-                            user={props.user}
-                        />
+                                <SponsorCard
+                                    id={sponsor?.channel_id}
+                                    name={sponsor?.channel_name}
+                                    url={sponsor?.channel_link}
+                                    user={props.user}
+                                />
+                            </>
+                        )}
                     </BottomWrap>
                 }
 

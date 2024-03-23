@@ -22,11 +22,11 @@ const BackendMockAPI = {
                     "ok": true,
                     "participants_count": 100,
                     "joined": true,
-                    "status": "start", // или "end" если завершен
+                    "status": "end", // или "end" если завершен
                     "winners_count": 3,
                     "deadline": {
                         "type": "time",
-                        "time": 1711550675 // unixtime
+                        "time": 0 // unixtime
                     }, // ИЛИ {"type": "members", "members": 100} - завершение по числу участников
                     "owner": {
                         "channel_id": -100123,
@@ -53,6 +53,32 @@ const BackendMockAPI = {
                         {
                             "name": "Саня Иванов",
                             "id": 18767289,
+                            "is_winner": true
+                        },
+                        {
+                            "name": "Саня Иванов",
+                            "id": 187672689,
+                            "is_winner": true
+                        }
+                        ,
+                        {
+                            "name": "Саня Иванов",
+                            "id": 187672839,
+                            "is_winner": true
+                        },
+                        {
+                            "name": "Саня Иванов",
+                            "id": 1876732839,
+                            "is_winner": true
+                        },
+                        {
+                            "name": "Саня Иванов",
+                            "id": 1876728939,
+                            "is_winner": true
+                        },
+                        {
+                            "name": "Саня Иванов",
+                            "id": 1187672839,
                             "is_winner": true
                         }
                     ]

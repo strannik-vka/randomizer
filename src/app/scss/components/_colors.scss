@@ -28,6 +28,7 @@
     --green-rgb: 101, 203, 130;
     --red: #ec7a7a;
     --red-rgb: 236, 122, 122;
+    --light: #fafafa;
 }
 
 $white: #ffffff;
@@ -47,6 +48,7 @@ $error: #ec7a7a;
 $red: #ec7a7a;
 $black: #000000;
 $transparent: transparent;
+$light: #fafafa;
 
 // exp
 $colors: (
@@ -60,7 +62,8 @@ $colors: (
     $orange: "orange",
     $purple: "purple",
     $blue: "blue",
-    $transparent: "transparent"
+    $transparent: "transparent",
+    $light: "light"
 );
 
 @each $color, $value in $colors {

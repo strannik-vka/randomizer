@@ -67,8 +67,8 @@ const AnimationText = (props) => {
                     ) : props.giveawayStatus === 'end' ? (
                         <>
                             <div className="fs-lg fw-600 mb-2">Розыгрыш завершен!</div>
-                            <span className="fw-500 pt-1">
-                                Вам обязательно повезет в следующий раз, не унывайте :)
+                            <span className="fw-400 pt-1">
+                                Вам обязательно повезет в&nbsp;следующий раз, не унывайте :)
                             </span>
                         </>
                     ) : props.joined ? (

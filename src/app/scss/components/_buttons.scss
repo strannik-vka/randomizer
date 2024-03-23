@@ -255,6 +255,11 @@
             --bs-btn-active-bg: #{darken($color, 25%)};
             --bs-btn-active-border-color: #{darken($color, 25%)};
         }
+        @if $value == "light" {
+            --bs-btn-color: rgba(134, 150, 187, 0.5);
+            --bs-btn-hover-color: rgba(134, 150, 187, 0.5);
+            --bs-btn-active-color: rgba(134, 150, 187, 0.5);
+        }
     }
     .btn-outline-#{$value} {
         &:not(.btn-colored),
