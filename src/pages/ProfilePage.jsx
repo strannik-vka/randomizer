@@ -5,9 +5,11 @@ import { Link, useParams } from "react-router-dom";
 import { route } from "../entities/route/lib";
 import { Tooltip } from "react-tooltip";
 import { getUser } from "../entities/user/api";
+import AvatarImg from "../features/AvatarImg/ui/AvatarImg";
 
 const ProfilePage = (props) => {
     const [user, setUser] = useState(null);
+    const isMe = props.user?.id ? true : false;
 
     let { userId } = useParams();
 
@@ -20,8 +22,6 @@ const ProfilePage = (props) => {
     useEffect(() => {
         setUser(props.user)
     }, [props.user])
-
-    console.log(user);
 
     return (user?.id &&
         <PageLayout preloader={props.preloader}>
@@ -37,7 +37,7 @@ const ProfilePage = (props) => {
                                                 <div className="user-badge-wrapper">
                                                     <div className="user-badge-counter"></div>
                                                     <div className="user-badge-avatar">
-                                                        <img src={user.image} />
+                                                        <AvatarImg user_id={user.id} />
                                                     </div>
                                                     <div className="user-badge-content">
                                                         <div className="user-badge-name">
@@ -90,7 +90,7 @@ const ProfilePage = (props) => {
                                 <div className="col">
                                     <div className="profile-fields-col">
                                         <div className="profile-fields-name">
-                                            id
+                                            {isMe && 'Мой '}ID
                                         </div>
                                         <div className="profile-fields-value">
                                             <IdButton id={user.id} textAlign="text-left" />
@@ -103,7 +103,11 @@ const ProfilePage = (props) => {
                                 <div className="col-auto">
                                     <div className="profile-fields-col profile-fields-min">
                                         <div className="profile-fields-name">
-                                            Победы
+                                            {isMe ? (
+                                                'Мои победы'
+                                            ) : (
+                                                'Победы'
+                                            )}
                                         </div>
                                         <div className="profile-fields-value">
                                             <span>🏆</span>
@@ -114,7 +118,11 @@ const ProfilePage = (props) => {
                                 <div className="col">
                                     <div className="profile-fields-col">
                                         <div className="profile-fields-name">
-                                            Участия
+                                            {isMe ? (
+                                                'Мои участия в конкурсах'
+                                            ) : (
+                                                'Участия в конкурсах'
+                                            )}
                                         </div>
                                         <div className="profile-fields-value">
                                             {user.giveaways_participated}

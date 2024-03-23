@@ -46,6 +46,7 @@ const Bottom = (props) => {
                                 id={props.sponsor?.channel_id}
                                 name={props.sponsor?.channel_name}
                                 url={props.sponsor?.channel_link}
+                                user={props.user}
                             />
                         )}
                     </div>

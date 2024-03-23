@@ -1,14 +1,15 @@
 import ParticipantsHeader from "../widgets/participant/ui/ParticipantsHeader"
 import React, { useCallback, useEffect, useState } from "react";
 import { BackendAPI } from "../shared/api/BackendAPI";
-import Bottom from "../widgets/bottom/ui/Bottom";
 import Menu from "../widgets/menu/ui/Menu";
 import ParticipantsList from "../widgets/participant/ui/ParticipantsList";
 import AnimationText from "../widgets/AnimationText/ui/AnimationText";
-import GiveawaysCount from "../widgets/giveaway/ui/GiveawaysCount";
 import PageLayout from "../widgets/PageLayout/ui/PageLayout";
 import { useParams } from "react-router-dom";
 import ChannelList from "../widgets/channels/ui/ChannelList";
+import BottomWrap from "../widgets/bottom/ui/BottomWrap";
+import SponsorCard from "../widgets/sponsor/ui/SponsorCard";
+import JoinButton from "../features/giveaway/join/ui/JoinButton";
 
 const JoinPage = (props) => {
     let { giveawayId } = useParams();
@@ -133,15 +134,20 @@ const JoinPage = (props) => {
                 </main>
 
                 {giveawayId &&
-                    <Bottom
-                        giveawayId={giveawayId}
-                        onJoin={onJoin}
-                        joined={joined}
-                        checking={checking}
-                        user={props.user}
-                        sponsor={sponsor}
-                        giveawayStatus={giveawayStatus}
-                    />
+                    <BottomWrap>
+                        <JoinButton
+                            checking={checking}
+                            giveawayId={giveawayId}
+                            onJoin={onJoin}
+                        />
+                        <div style={{ height: '0.625rem' }}></div>
+                        <SponsorCard
+                            id={sponsor?.channel_id}
+                            name={sponsor?.channel_name}
+                            url={sponsor?.channel_link}
+                            user={props.user}
+                        />
+                    </BottomWrap>
                 }
 
                 <Menu
