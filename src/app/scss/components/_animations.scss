@@ -2,8 +2,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 16rem;
+    max-width: 14rem;
     height: auto;
     margin-left: auto;
     margin-right: auto;
+
+    &.is-timer {
+        max-width: 13rem;
+        transform: translateX(-0.625rem);
+    }
 }

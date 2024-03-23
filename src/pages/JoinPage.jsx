@@ -10,6 +10,8 @@ import ChannelList from "../widgets/channels/ui/ChannelList";
 import BottomWrap from "../widgets/bottom/ui/BottomWrap";
 import SponsorCard from "../widgets/sponsor/ui/SponsorCard";
 import JoinButton from "../features/giveaway/join/ui/JoinButton";
+import IdButton from "../features/giveaway/IdButton/ui/IdButton";
+import Timer from "../widgets/timer/ui/Timer";
 
 const JoinPage = (props) => {
     let { giveawayId } = useParams();
@@ -22,25 +24,34 @@ const JoinPage = (props) => {
     const [participantsListShow, setParticipantsListShow] = useState(false);
     const [onJoined, setOnJoin] = useState(false);
     const [giveawayStatus, setGiveawayStatus] = useState(false);
+    const [deadlineTime, setDeadlineTime] = useState(false);
+
+    const isMeParticipant = (onJoined && onJoined !== 'CONDITIONS_ARE_NOT_MET') || joined;
 
     const getGiveawayStats = useCallback(() => {
         if (giveawayId) {
-            BackendAPI.get('getGiveawayStats', {
-                params: {
-                    giveaway_id: giveawayId,
-                    onJoined: onJoined
-                }
-            }).then(response => {
-                setJoined(response.data?.joined);
-                setParticipants(response.data?.participants);
-                setParticipantsCount(response.data?.participants_count);
-                setSponsor(response.data?.owner);
-                setGiveawayStatus(response.data?.status);
+            setTimeout(() => {
+                BackendAPI.get('getGiveawayStats', {
+                    params: {
+                        giveaway_id: giveawayId,
+                        onJoined: onJoined
+                    }
+                }).then(response => {
+                    setJoined(response.data?.joined);
+                    setParticipants(response.data?.participants);
+                    setParticipantsCount(response.data?.participants_count);
+                    setSponsor(response.data?.owner);
+                    setGiveawayStatus(response.data?.status);
 
-                setChecking(false);
-            }).catch(() => {
-                setChecking(false);
-            })
+                    if (response.data?.deadline?.time) {
+                        setDeadlineTime(response.data.deadline.time);
+                    }
+
+                    setChecking(false);
+                }).catch(() => {
+                    setChecking(false);
+                })
+            }, 2500)
         }
     }, [giveawayId, onJoined]);
 
@@ -98,7 +109,23 @@ const JoinPage = (props) => {
                             <div className="section-main-inner">
                                 <div className="section-main-primary">
                                     <div className="row g-3">
+                                        {(deadlineTime && isMeParticipant) &&
+                                            <div style={{
+                                                position: 'relative',
+                                                marginTop: 0
+                                            }}>
+                                                <div style={{
+                                                    position: 'absolute',
+                                                    right: '0.5rem',
+                                                    top: '0.5rem'
+                                                }}>
+                                                    <Timer time={deadlineTime} />
+                                                </div>
+                                            </div>
+                                        }
+
                                         <AnimationText
+                                            isMeParticipant={isMeParticipant}
                                             checking={checking}
                                             onJoined={onJoined}
                                             joined={joined}
@@ -107,25 +134,27 @@ const JoinPage = (props) => {
                                             giveawayId={giveawayId}
                                         />
 
-                                        <div className="col-12" style={{ marginTop: '1.875rem' }}>
-                                            <ChannelList list={
-                                                [
-                                                    {
-                                                        id: 1,
-                                                        name: 'Хорошие новости',
-                                                        isSubscribed: true
-                                                    },
-                                                    {
-                                                        id: 2,
-                                                        name: 'Название длинное очень сильно',
-                                                    },
-                                                    {
-                                                        id: 3,
-                                                        name: 'Название длинное очень сильно',
-                                                    }
-                                                ]
-                                            } />
-                                        </div>
+                                        {!isMeParticipant &&
+                                            <div className="col-12" style={{ marginTop: '1.875rem' }}>
+                                                <ChannelList list={
+                                                    [
+                                                        {
+                                                            id: 1,
+                                                            name: 'Хорошие новости',
+                                                            isSubscribed: true
+                                                        },
+                                                        {
+                                                            id: 2,
+                                                            name: 'Название длинное очень сильно',
+                                                        },
+                                                        {
+                                                            id: 3,
+                                                            name: 'Название длинное очень сильно',
+                                                        }
+                                                    ]
+                                                } />
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -135,12 +164,24 @@ const JoinPage = (props) => {
 
                 {giveawayId &&
                     <BottomWrap>
-                        <JoinButton
-                            checking={checking}
-                            giveawayId={giveawayId}
-                            onJoin={onJoin}
-                        />
-                        <div style={{ height: '0.625rem' }}></div>
+                        {isMeParticipant ? <>
+                            <IdButton
+                                id={props.user.id}
+                            />
+                            <div className="mt-1 text-center text-blue">Это ваш ID участника, сохраните</div>
+                            <div className="devider devider-horizontal mt-5 mb-5"></div>
+                            <button
+                                className="btn btn-lg btn-primary btn-gradient w-100 mb-5"
+                            >Подробнее о розыгрыше</button>
+                        </> : <>
+                            <JoinButton
+                                checking={checking}
+                                giveawayId={giveawayId}
+                                onJoin={onJoin}
+                            />
+                            <div style={{ height: '0.625rem' }}></div>
+                        </>}
+
                         <SponsorCard
                             id={sponsor?.channel_id}
                             name={sponsor?.channel_name}

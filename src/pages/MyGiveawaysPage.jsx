@@ -3,6 +3,7 @@ import PageLayout from "../widgets/PageLayout/ui/PageLayout"
 import { BackendAPI } from "../shared/api/BackendAPI";
 import TabButtons from "../shared/ui/TabButtons";
 import GiveawayCard from "../widgets/giveaway/ui/GiveawayCard";
+import { route } from "../entities/route/lib";
 
 const MyGiveawaysPage = (props) => {
     const [list, setList] = useState(null);
@@ -66,7 +67,11 @@ const MyGiveawaysPage = (props) => {
                         <div className="draw-list flex-fill">
                             {Array.isArray(list) &&
                                 list.map(item => (
-                                    <GiveawayCard key={item.channel_id} {...item} />
+                                    <GiveawayCard
+                                        key={item.channel_id}
+                                        {...item}
+                                        route={route('join/' + item.channel_id)}
+                                    />
                                 ))
                             }
                         </div>

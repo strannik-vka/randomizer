@@ -1,0 +1,25 @@
+.wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    border-radius: 6.25rem;
+    width: 6.88rem;
+    height: 6.5rem;
+    background: rgba(255, 255, 255, 0.15);
+
+    .time {
+        font-weight: 600;
+        font-size: 1.12rem;
+        text-align: center;
+        color: #fff;
+    }
+
+    .description {
+        font-weight: 500;
+        font-size: 0.5rem;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.7);
+    }
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import AvatarImg from "../../../features/AvatarImg/ui/AvatarImg";
+import { Link } from "react-router-dom";
 
 const GiveawayCard = (props) => {
     return (
@@ -12,7 +13,7 @@ const GiveawayCard = (props) => {
                     <div className="draw-card-name">
                         {props.channel_name}
                     </div>
-                    {props.top_msg_link &&
+                    {(props.top_msg_link || props.route) &&
                         <div className="draw-card-link">
                             <span>Подробнее</span>
                             <span>
@@ -28,9 +29,11 @@ const GiveawayCard = (props) => {
                     }
                 </div>
             </div>
-            {props.top_msg_link &&
+            {props.route ? (
+                <Link to={props.route} className="stretched-link" />
+            ) : props.top_msg_link ? (
                 <a target="_blank" href={props.top_msg_link} className="stretched-link"></a>
-            }
+            ) : ''}
         </div>
     )
 }

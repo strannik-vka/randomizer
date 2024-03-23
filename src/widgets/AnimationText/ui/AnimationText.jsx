@@ -1,6 +1,5 @@
 import React from "react"
 import Lottie from "lottie-react";
-import girlAnimation from '../../../app/json/animation/invalid.json'
 import welcomeAnimation from '../../../app/json/animation/welcome.json'
 import successAnimation from '../../../app/json/animation/success.json'
 import checkAnimation from '../../../app/json/animation/check.json'
@@ -11,7 +10,7 @@ const AnimationText = (props) => {
     return (
         <>
             <div className="col-12">
-                <div className="block-animation">
+                <div className={'block-animation ' + (props.isMeParticipant ? 'is-timer' : '')}>
                     <Lottie
                         animationData={
                             !props.giveawayId ? (
@@ -27,7 +26,7 @@ const AnimationText = (props) => {
                             ) : props.giveawayStatus == 'end' ? (
                                 finishAnimation
                             ) : props.joined ? (
-                                girlAnimation
+                                successAnimation
                             ) : (
                                 welcomeAnimation
                             )
@@ -52,19 +51,18 @@ const AnimationText = (props) => {
                         </>
                     ) : props.onJoined === 'CONDITIONS_ARE_NOT_MET' ? (
                         <>
-                            Вы выполнили не все условия<br />
-                            розыгрыша, пожалуйста,<br />
-                            перепроверьте условия {props.sponsor?.channel_link ? <a target="_blank" href={props.sponsor.channel_link}>в посте</a> : 'в посте'}
+                            Подпишитесь на все каналы<br />
+                            в условиях конкурса
                         </>
                     ) : props.onJoined === 'IP_BLOCKED' ? (
                         <>
-                            <div className="fs-lg fw-600">Поздравляем!</div>
-                            <span className="fw-500">Вы участвуете в розыгрыше</span>
+                            <div className="fs-6 fw-600 mb-2">Вы участвуете в розыгрыше</div>
+                            <div className="lh-n fs-4 fw-500">Не описывайтесь от каналов до момента<br />завершения розыгрыша!</div>
                         </>
                     ) : props.onJoined ? (
                         <>
-                            <div className="fs-lg fw-600">Поздравляем!</div>
-                            <span className="fw-500">Вы участвуете в розыгрыше</span>
+                            <div className="fs-6 fw-600 mb-2">Вы участвуете в розыгрыше</div>
+                            <div className="lh-n fs-4 fw-500">Не описывайтесь от каналов до момента<br />завершения розыгрыша!</div>
                         </>
                     ) : props.giveawayStatus === 'end' ? (
                         <>
@@ -75,17 +73,8 @@ const AnimationText = (props) => {
                         </>
                     ) : props.joined ? (
                         <>
-                            <div className="fs-lg fw-600">Упс!</div>
-                            <span className="fw-500">
-                                Вы уже участвуете в розыгрыше, <br />от канала {props.sponsor?.channel_link ? (
-                                    <a
-                                        href={props.sponsor.channel_link}
-                                        target="_blank"
-                                    >{props.sponsor.channel_name}</a>
-                                ) : (
-                                    <>{props.sponsor?.channel_name}</>
-                                )}
-                            </span>
+                            <div className="fs-6 fw-600 mb-2">Вы участвуете в розыгрыше</div>
+                            <div className="lh-n fs-4 fw-500">Не описывайтесь от каналов до момента<br />завершения розыгрыша!</div>
                         </>
                     ) : (
                         <>
