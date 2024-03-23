@@ -1,0 +1,56 @@
+.wrap {
+    overflow: hidden;
+    border-radius: 1.56rem;
+    padding: 0.94rem 1.7813rem;
+    margin-left: 1.1875rem;
+    margin-right: 1.1875rem;
+    height: 5rem;
+    background: #fafafa;
+
+    display: flex;
+    column-gap: 0.8125rem;
+
+    .media {
+        display: flex;
+        column-gap: 0.625rem;
+        align-items: center;
+
+        .imageWrap {
+            overflow: hidden;
+            border-radius: 0.94rem;
+            width: 3.12rem;
+            height: 3.12rem;
+
+            & > * {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+
+    .name {
+        font-size: 1rem;
+        color: #8696bb;
+
+        font-weight: 600;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+
+        width: 5.565rem;
+    }
+
+    .action {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        button {
+            width: 100%;
+        }
+    }
+}

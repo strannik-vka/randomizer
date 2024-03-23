@@ -8,6 +8,7 @@ import AnimationText from "../widgets/AnimationText/ui/AnimationText";
 import GiveawaysCount from "../widgets/giveaway/ui/GiveawaysCount";
 import PageLayout from "../widgets/PageLayout/ui/PageLayout";
 import { useParams } from "react-router-dom";
+import ChannelList from "../widgets/channels/ui/ChannelList";
 
 const JoinPage = (props) => {
     let { giveawayId } = useParams();
@@ -105,11 +106,25 @@ const JoinPage = (props) => {
                                             giveawayId={giveawayId}
                                         />
 
-                                        {(props.user?.giveaways_participated > 0 && giveawayId) &&
-                                            <GiveawaysCount
-                                                count={props.user.giveaways_participated}
-                                            />
-                                        }
+                                        <div className="col-12" style={{ marginTop: '1.875rem' }}>
+                                            <ChannelList list={
+                                                [
+                                                    {
+                                                        id: 1,
+                                                        name: 'Хорошие новости',
+                                                        isSubscribed: true
+                                                    },
+                                                    {
+                                                        id: 2,
+                                                        name: 'Название длинное очень сильно',
+                                                    },
+                                                    {
+                                                        id: 3,
+                                                        name: 'Название длинное очень сильно',
+                                                    }
+                                                ]
+                                            } />
+                                        </div>
                                     </div>
                                 </div>
                             </div>

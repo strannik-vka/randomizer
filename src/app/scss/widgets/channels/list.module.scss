@@ -1,0 +1,19 @@
+.wrap {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-right: 0.3125rem;
+    padding-left: 0.3125rem;
+    background: #fff;
+    border-radius: 1.88rem;
+
+    .body-wrap {
+        max-height: 10.625rem;
+        overflow: auto;
+
+        .body {
+            display: flex;
+            flex-direction: column;
+            row-gap: 0.625rem;
+        }
+    }
+}
