@@ -21,8 +21,8 @@ const BackendMockAPI = {
                 data: {
                     "ok": true,
                     "participants_count": 100,
-                    "joined": true,
-                    "status": "end", // или "end" если завершен
+                    "joined": false,
+                    "status": "start", // или "end" если завершен
                     "winners_count": 3,
                     "deadline": {
                         "type": "time",
@@ -33,6 +33,36 @@ const BackendMockAPI = {
                         "channel_name": "Test channel name",
                         "channel_link": "https://t.me/test" // или null, если канал приватный
                     },
+                    "subscription_status": {
+                        "-1001234": true,
+                    },
+                    "channels": [
+                        {
+                            "channel_id": -1001234,
+                            "channel_name": "Канал 1",
+                            "channel_link": "https://t.me/test" // или null, если канал приватный
+                        },
+                        {
+                            "channel_id": -1001235,
+                            "channel_name": "Канал 2",
+                            "channel_link": "https://t.me/test" // или null, если канал приватный
+                        },
+                        {
+                            "channel_id": -1001236,
+                            "channel_name": "Канал 3",
+                            "channel_link": "https://t.me/test" // или null, если канал приватный
+                        },
+                        {
+                            "channel_id": -1001237,
+                            "channel_name": "Канал 4",
+                            "channel_link": "https://t.me/test" // или null, если канал приватный
+                        },
+                        {
+                            "channel_id": -1001238,
+                            "channel_name": "Канал 5",
+                            "channel_link": "https://t.me/test" // или null, если канал приватный
+                        }
+                    ],
                     "top_msg_link": "https://t.me/c/123/42", // ссылка на первый пост или null`
                     "participants": [
                         {

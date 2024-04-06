@@ -3,7 +3,7 @@ import ChannelCard from "./ChannelCard";
 import styles from '../../../app/scss/widgets/channels/list.module.scss';
 
 const ChannelList = (props) => {
-    return (
+    return (Array.isArray(props.list) &&
         <div className={styles.wrap}>
             <div className={styles['body-wrap']}>
                 <div className={styles.body}>

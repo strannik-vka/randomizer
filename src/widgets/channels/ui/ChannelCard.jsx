@@ -9,9 +9,9 @@ const ChannelCard = (props) => {
         <div className={styles.wrap}>
             <div className={styles.media}>
                 <div className={styles.imageWrap}>
-                    <AvatarImg channel_id={props.id} />
+                    <AvatarImg channel_id={props.channel_id} />
                 </div>
-                <div className={styles.name}>{props.name}</div>
+                <div className={styles.name}>{props.channel_name}</div>
             </div>
             <div className={styles.action}>
                 <SubscribeButton {...props} />

@@ -27,6 +27,7 @@ const JoinPage = (props) => {
     const [onJoined, setOnJoin] = useState(false);
     const [giveawayStatus, setGiveawayStatus] = useState(false);
     const [deadlineTime, setDeadlineTime] = useState(false);
+    const [subscribeList, setSubscribeList] = useState(false);
 
     const isMeParticipant = (onJoined && onJoined !== 'CONDITIONS_ARE_NOT_MET') || joined;
 
@@ -47,6 +48,20 @@ const JoinPage = (props) => {
 
                     if (response.data?.deadline?.time) {
                         setDeadlineTime(response.data.deadline.time);
+                    }
+
+                    if (response.data?.channels) {
+                        const subscribeList = response.data.channels.map((item) => {
+                            if (response.data?.subscription_status) {
+                                if (typeof response.data.subscription_status[item.channel_id] !== 'undefined') {
+                                    item.isSubscribed = response.data.subscription_status[item.channel_id];
+                                }
+                            }
+
+                            return item
+                        });
+
+                        setSubscribeList(subscribeList);
                     }
 
                     setChecking(false);
@@ -138,23 +153,7 @@ const JoinPage = (props) => {
 
                                         {!isMeParticipant &&
                                             <div className="col-12" style={{ marginTop: '1.875rem' }}>
-                                                <ChannelList list={
-                                                    [
-                                                        {
-                                                            id: 1,
-                                                            name: 'Хорошие новости',
-                                                            isSubscribed: true
-                                                        },
-                                                        {
-                                                            id: 2,
-                                                            name: 'Название длинное очень сильно',
-                                                        },
-                                                        {
-                                                            id: 3,
-                                                            name: 'Название длинное очень сильно',
-                                                        }
-                                                    ]
-                                                } />
+                                                <ChannelList list={subscribeList} />
                                             </div>
                                         }
                                     </div>
