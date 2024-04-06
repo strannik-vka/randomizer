@@ -51,11 +51,7 @@ const GiveawayAboutPage = (props) => {
                                 <div className="info-card-title">
                                     Пост с розыгрышем
                                 </div>
-                                <div className="info-card-body">
-                                    Здесь отображается текст поста. Мой текст всего лишь пример того, что нужно. ⚠️ Текст отображается со всеми системными смайликами.
-
-                                    С соблюдением абзацев, пробелов, отступов и т.п.
-                                </div>
+                                <div className="info-card-body">{giveaway.message}</div>
                             </div>
 
                             <div className="info-card">

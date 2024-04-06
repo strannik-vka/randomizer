@@ -24,6 +24,7 @@ const BackendMockAPI = {
                     "joined": true,
                     "status": "start", // или "end" если завершен
                     "winners_count": 3,
+                    "message": 'текст',
                     "deadline": {
                         "type": "time",
                         "time": 1712300453 // unixtime
