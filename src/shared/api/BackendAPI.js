@@ -21,12 +21,12 @@ const BackendMockAPI = {
                 data: {
                     "ok": true,
                     "participants_count": 100,
-                    "joined": false,
+                    "joined": true,
                     "status": "start", // или "end" если завершен
                     "winners_count": 3,
                     "deadline": {
                         "type": "time",
-                        "time": 0 // unixtime
+                        "time": 1712300453 // unixtime
                     }, // ИЛИ {"type": "members", "members": 100} - завершение по числу участников
                     "owner": {
                         "channel_id": -100123,

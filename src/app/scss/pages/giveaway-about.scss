@@ -1,0 +1,42 @@
+.info-blocks {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.875rem;
+}
+
+.info-card {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.625rem;
+
+    .info-card-title {
+        font-weight: 500;
+        font-size: 1.12rem;
+        color: #8696bb;
+        opacity: 0.5;
+    }
+
+    .info-card-body {
+        overflow: hidden;
+        border-radius: 1.38rem;
+        padding: 1.25rem;
+        background: #fafafa;
+
+        font-weight: 500;
+        font-size: 1rem;
+        color: #8696bb;
+        white-space: pre-line;
+    }
+}
+
+.channels {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.625rem;
+
+    .draw-card-avatar {
+        border-radius: 62.5rem;
+        width: 3.75rem;
+        height: 3.75rem;
+    }
+}

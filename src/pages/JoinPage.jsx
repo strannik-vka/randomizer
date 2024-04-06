@@ -194,9 +194,10 @@ const JoinPage = (props) => {
                                     />
                                     <div className="mt-1 text-center text-blue">Это ваш ID участника, сохраните</div>
                                     <div className="devider devider-horizontal mt-5 mb-5"></div>
-                                    <button
+                                    <Link
+                                        to={route('giveaway-about/' + giveawayId)}
                                         className="btn btn-lg btn-primary btn-gradient w-100 mb-5"
-                                    >Подробнее о розыгрыше</button>
+                                    >Подробнее о розыгрыше</Link>
                                 </> : <>
                                     <JoinButton
                                         checking={checking}

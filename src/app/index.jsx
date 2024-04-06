@@ -12,6 +12,7 @@ import GiveawayPage from "../pages/GiveawayPage"
 import './scss/app.scss'
 import './scss/pages/main.scss'
 import IndexPage from "../pages/IndexPage"
+import GiveawayAboutPage from "../pages/GiveawayAboutPage"
 
 const App = () => {
     const [preloader, setPreloader] = useState(true);
@@ -55,6 +56,10 @@ const App = () => {
         {
             path: route('giveaway/:giveawayId'),
             element: <GiveawayPage preloader={preloader} />
+        },
+        {
+            path: route('giveaway-about/:giveawayId'),
+            element: <GiveawayAboutPage preloader={preloader} />
         }
     ]);
 
