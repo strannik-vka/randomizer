@@ -143,13 +143,13 @@ const BackendMockAPI = {
                                 "channel_name": "Хорошие новости",
                                 "channel_id": 1,
                                 "giveaway_id": "aabbcc",
-                                "top_msg_link": "https://t.me/c/123/42"
+                                "top_msg_link": "https://t.me/c/123/42",
                             },
                             {
                                 "channel_name": "Плохие новости",
                                 "channel_id": 2,
                                 "giveaway_id": "aabbcc",
-                                "top_msg_link": "https://t.me/c/123/42"
+                                "top_msg_link": "https://t.me/c/123/42",
                             }
                         ]
                     }
@@ -163,19 +163,22 @@ const BackendMockAPI = {
                                 "channel_name": "Хорошие новости",
                                 "channel_id": 3,
                                 "giveaway_id": "aabbcc",
-                                "top_msg_link": null
+                                "top_msg_link": null,
+                                "end_date": 1712300453
                             },
                             {
                                 "channel_name": "Хорошие новости",
                                 "channel_id": 4,
                                 "giveaway_id": "aabbcc",
-                                "top_msg_link": "https://t.me/c/123/42"
+                                "top_msg_link": "https://t.me/c/123/42",
+                                "end_date": 1712300453
                             },
                             {
                                 "channel_name": "Плохие новости",
                                 "channel_id": 5,
                                 "giveaway_id": "aabbcc",
-                                "top_msg_link": "https://t.me/c/123/42"
+                                "top_msg_link": "https://t.me/c/123/42",
+                                "end_date": 1712300453
                             }
                         ]
                     }

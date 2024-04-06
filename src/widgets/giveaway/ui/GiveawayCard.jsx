@@ -1,8 +1,11 @@
 import React from "react";
 import AvatarImg from "../../../features/AvatarImg/ui/AvatarImg";
 import { Link } from "react-router-dom";
+import moment from 'moment';
 
 const GiveawayCard = (props) => {
+    const viewLinkOrRoute = (props.top_msg_link || props.route) && !props.end_date;
+
     return (
         <div key={props.channel_id} className="draw-card">
             <div className="draw-card-wrapper">
@@ -13,7 +16,14 @@ const GiveawayCard = (props) => {
                     <div className="draw-card-name">
                         {props.channel_name}
                     </div>
-                    {(props.top_msg_link || props.route) &&
+
+                    {props.end_date && (
+                        <div className="draw-card-link">
+                            Завершен {moment(props.end_date * 1000).format('DD.MM.YYYY')}
+                        </div>
+                    )}
+
+                    {viewLinkOrRoute &&
                         <div className="draw-card-link">
                             <span>Подробнее</span>
                             <span>
