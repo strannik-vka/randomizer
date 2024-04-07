@@ -26,12 +26,14 @@ const SponsorCard = (props) => {
                 </div>
             </a>
 
-            <Link to={route('profile')} className={styles.account}>
-                <div className={styles.avatarWrap}>
-                    <AvatarImg user_id={props.user.id} />
-                </div>
-                <div className={styles.description}>Мой аккаунт</div>
-            </Link>
+            {props?.user?.id &&
+                <Link to={route('profile')} className={styles.account}>
+                    <div className={styles.avatarWrap}>
+                        <AvatarImg user_id={props.user.id} />
+                    </div>
+                    <div className={styles.description}>Мой аккаунт</div>
+                </Link>
+            }
         </div>
     )
 }

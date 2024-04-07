@@ -6,7 +6,7 @@ const SubscribeButton = (props) => {
         props.isSubscribed ? (
             <button className="btn btn-sm btn-completed">Подписаны</button>
         ) : (
-            <button className="btn btn-sm btn-primary">Подписаться</button>
+            <a href={props.channel_link} target="_blank" className="btn btn-sm btn-primary">Подписаться</a>
         )
     )
 }

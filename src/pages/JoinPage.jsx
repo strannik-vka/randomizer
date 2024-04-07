@@ -61,6 +61,10 @@ const JoinPage = (props) => {
                             return item
                         });
 
+                        if (response.data?.owner) {
+                            subscribeList.push(response.data.owner);
+                        }
+
                         setSubscribeList(subscribeList);
                     }
 
