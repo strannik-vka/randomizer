@@ -62,7 +62,15 @@ const JoinPage = (props) => {
                         });
 
                         if (response.data?.owner) {
-                            subscribeList.push(response.data.owner);
+                            let owner = response.data.owner;
+
+                            if (response.data?.subscription_status) {
+                                if (typeof response.data.subscription_status[owner.channel_id] !== 'undefined') {
+                                    owner.isSubscribed = response.data.subscription_status[owner.channel_id];
+                                }
+                            }
+
+                            subscribeList.push(owner);
                         }
 
                         setSubscribeList(subscribeList);
