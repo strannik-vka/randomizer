@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import moment from 'moment';
 
 const GiveawayCard = (props) => {
-    const viewLinkOrRoute = (props.top_msg_link || props.route) && !props.end_date;
+    const viewLinkOrRoute = (props.top_msg_link || props.route || props.channel_link) && !props.end_date;
 
     return (
         <div key={props.channel_id} className="draw-card">
@@ -41,8 +41,8 @@ const GiveawayCard = (props) => {
             </div>
             {props.route ? (
                 <Link to={props.route} className="stretched-link" />
-            ) : props.top_msg_link ? (
-                <a target="_blank" href={props.top_msg_link} className="stretched-link"></a>
+            ) : props.channel_link ? (
+                <a target="_blank" href={props.channel_link} className="stretched-link"></a>
             ) : ''}
         </div>
     )

@@ -3,16 +3,11 @@ import { BackendAPI } from "../../../../shared/api/BackendAPI"
 
 const JoinButton = (props) => {
     const [joining, setJoining] = useState(false)
-    const [disabled, setDisabled] = useState(false)
 
     const onJoin = (data) => {
         if (typeof props.onJoin === 'function') {
             if (data?.ok) {
                 data.id = props.giveawayId;
-            }
-
-            if (data?.error == 'CONDITIONS_ARE_NOT_MET') {
-                setDisabled(true);
             }
 
             props.onJoin(data);
@@ -41,7 +36,7 @@ const JoinButton = (props) => {
         <button
             onClick={joining ? () => { } : () => setJoining(true)}
             className="btn btn-lg btn-primary btn-gradient w-100"
-            disabled={props.checking || disabled}
+            disabled={props.checking || props.disabled}
         >
             {joining ? (
                 <>

@@ -70,7 +70,6 @@ const MyGiveawaysPage = (props) => {
                                     <GiveawayCard
                                         key={item.channel_id}
                                         {...item}
-                                        route={route('join/' + item.channel_id)}
                                     />
                                 ))
                             }

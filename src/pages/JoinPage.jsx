@@ -20,6 +20,7 @@ const JoinPage = (props) => {
 
     const [sponsor, setSponsor] = useState(null);
     const [joined, setJoined] = useState(false);
+    const [joinBtnDisabled, setJoinBtnDisabled] = useState(false);
     const [participants, setParticipants] = useState(null);
     const [participantsCount, setParticipantsCount] = useState(0);
     const [checking, setChecking] = useState(false);
@@ -85,6 +86,10 @@ const JoinPage = (props) => {
     }, [giveawayId, onJoined]);
 
     const onJoin = useCallback((data) => {
+        if (data?.error == 'CONDITIONS_ARE_NOT_MET') {
+            setJoinBtnDisabled(true);
+        }
+
         setOnJoin(data.id ? (
             data.id
         ) : data.error ? (
@@ -100,6 +105,10 @@ const JoinPage = (props) => {
 
     const onParticipantsListHide = useCallback(() => {
         setParticipantsListShow(false);
+    }, [])
+
+    const onSubscribeAll = useCallback(() => {
+        setJoinBtnDisabled(false);
     }, [])
 
     // useEffects
@@ -165,7 +174,10 @@ const JoinPage = (props) => {
 
                                         {!isMeParticipant &&
                                             <div className="col-12" style={{ marginTop: '1.875rem' }}>
-                                                <ChannelList list={subscribeList} />
+                                                <ChannelList
+                                                    list={subscribeList}
+                                                    onSubscribeAll={onSubscribeAll}
+                                                />
                                             </div>
                                         }
                                     </div>
@@ -213,6 +225,7 @@ const JoinPage = (props) => {
                                 </> : <>
                                     <JoinButton
                                         checking={checking}
+                                        disabled={joinBtnDisabled}
                                         giveawayId={giveawayId}
                                         onJoin={onJoin}
                                     />

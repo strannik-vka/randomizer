@@ -13,7 +13,7 @@ const AboutChannelCard = (props) => {
                         {props.channel_name}
                     </div>
 
-                    {props.top_msg_link &&
+                    {props.channel_link &&
                         <div className="draw-card-link">
                             <span>Подробнее</span>
                             <span>
@@ -29,8 +29,8 @@ const AboutChannelCard = (props) => {
                     }
                 </div>
             </div>
-            {props.top_msg_link && (
-                <a target="_blank" href={props.top_msg_link} className="stretched-link"></a>
+            {props.channel_link && (
+                <a target="_blank" href={props.channel_link} className="stretched-link"></a>
             )}
         </div>
     )

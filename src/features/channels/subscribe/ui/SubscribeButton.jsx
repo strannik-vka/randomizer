@@ -1,7 +1,15 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 const SubscribeButton = (props) => {
     const [onClick, setOnClick] = useState(false);
+
+    useEffect(() => {
+        if (onClick) {
+            if (props.onSubscribe) {
+                props.onSubscribe();
+            }
+        }
+    }, [onClick])
 
     return (
         (props.isSubscribed || onClick) ? (

@@ -4,7 +4,6 @@ import AvatarImg from "../../../features/AvatarImg/ui/AvatarImg";
 import SubscribeButton from "../../../features/channels/subscribe/ui/SubscribeButton";
 
 const ChannelCard = (props) => {
-
     return (
         <div className={styles.wrap}>
             <div className={styles.media}>
