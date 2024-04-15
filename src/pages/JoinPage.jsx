@@ -30,8 +30,6 @@ const JoinPage = (props) => {
     const [deadlineTime, setDeadlineTime] = useState(false);
     const [subscribeList, setSubscribeList] = useState(false);
 
-    const isMeParticipant = (onJoined && onJoined !== 'CONDITIONS_ARE_NOT_MET') || joined;
-
     const getGiveawayStats = useCallback(() => {
         if (giveawayId) {
             setTimeout(() => {
@@ -88,6 +86,10 @@ const JoinPage = (props) => {
     const onJoin = useCallback((data) => {
         if (data?.error == 'CONDITIONS_ARE_NOT_MET') {
             setJoinBtnDisabled(true);
+        }
+
+        if (data.id) {
+            setJoined(true);
         }
 
         setOnJoin(data.id ? (
@@ -147,7 +149,7 @@ const JoinPage = (props) => {
                             <div className="section-main-inner">
                                 <div className="section-main-primary">
                                     <div className="row g-3">
-                                        {(deadlineTime && isMeParticipant) &&
+                                        {(deadlineTime && joined) &&
                                             <div style={{
                                                 position: 'relative',
                                                 marginTop: 0
@@ -163,7 +165,7 @@ const JoinPage = (props) => {
                                         }
 
                                         <AnimationText
-                                            isMeParticipant={isMeParticipant}
+                                            isMeParticipant={joined}
                                             checking={checking}
                                             onJoined={onJoined}
                                             joined={joined}
@@ -172,7 +174,7 @@ const JoinPage = (props) => {
                                             giveawayId={giveawayId}
                                         />
 
-                                        {!isMeParticipant &&
+                                        {!joined &&
                                             <div className="col-12" style={{ marginTop: '1.875rem' }}>
                                                 <ChannelList
                                                     list={subscribeList}
@@ -212,7 +214,7 @@ const JoinPage = (props) => {
                             </>
                         ) : (
                             <>
-                                {isMeParticipant ? <>
+                                {joined ? <>
                                     <IdButton
                                         id={props.user.id}
                                     />
